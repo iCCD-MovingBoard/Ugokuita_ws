@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/canada/ydlidar_ros2_ws/src/ydlidar_ros2_driver
+CMAKE_SOURCE_DIR = /home/canada/ugokuita_ws/ros2_ugokuita_ws/src/controller_pkg
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver
+CMAKE_BINARY_DIR = /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver/CMakeFiles /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -185,91 +185,17 @@ uninstall/fast:
 .PHONY : uninstall/fast
 
 #=============================================================================
-# Target rules for targets named ydlidar_ros2_driver_uninstall
+# Target rules for targets named controller_pkg_uninstall
 
 # Build rule for target.
-ydlidar_ros2_driver_uninstall: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ydlidar_ros2_driver_uninstall
-.PHONY : ydlidar_ros2_driver_uninstall
+controller_pkg_uninstall: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 controller_pkg_uninstall
+.PHONY : controller_pkg_uninstall
 
 # fast build rule for target.
-ydlidar_ros2_driver_uninstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_uninstall.dir/build.make CMakeFiles/ydlidar_ros2_driver_uninstall.dir/build
-.PHONY : ydlidar_ros2_driver_uninstall/fast
-
-#=============================================================================
-# Target rules for targets named ydlidar_ros2_driver_node
-
-# Build rule for target.
-ydlidar_ros2_driver_node: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ydlidar_ros2_driver_node
-.PHONY : ydlidar_ros2_driver_node
-
-# fast build rule for target.
-ydlidar_ros2_driver_node/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_node.dir/build.make CMakeFiles/ydlidar_ros2_driver_node.dir/build
-.PHONY : ydlidar_ros2_driver_node/fast
-
-#=============================================================================
-# Target rules for targets named ydlidar_ros2_driver_client
-
-# Build rule for target.
-ydlidar_ros2_driver_client: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ydlidar_ros2_driver_client
-.PHONY : ydlidar_ros2_driver_client
-
-# fast build rule for target.
-ydlidar_ros2_driver_client/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_client.dir/build.make CMakeFiles/ydlidar_ros2_driver_client.dir/build
-.PHONY : ydlidar_ros2_driver_client/fast
-
-src/ydlidar_ros2_driver_client.o: src/ydlidar_ros2_driver_client.cpp.o
-.PHONY : src/ydlidar_ros2_driver_client.o
-
-# target to build an object file
-src/ydlidar_ros2_driver_client.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_client.dir/build.make CMakeFiles/ydlidar_ros2_driver_client.dir/src/ydlidar_ros2_driver_client.cpp.o
-.PHONY : src/ydlidar_ros2_driver_client.cpp.o
-
-src/ydlidar_ros2_driver_client.i: src/ydlidar_ros2_driver_client.cpp.i
-.PHONY : src/ydlidar_ros2_driver_client.i
-
-# target to preprocess a source file
-src/ydlidar_ros2_driver_client.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_client.dir/build.make CMakeFiles/ydlidar_ros2_driver_client.dir/src/ydlidar_ros2_driver_client.cpp.i
-.PHONY : src/ydlidar_ros2_driver_client.cpp.i
-
-src/ydlidar_ros2_driver_client.s: src/ydlidar_ros2_driver_client.cpp.s
-.PHONY : src/ydlidar_ros2_driver_client.s
-
-# target to generate assembly for a file
-src/ydlidar_ros2_driver_client.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_client.dir/build.make CMakeFiles/ydlidar_ros2_driver_client.dir/src/ydlidar_ros2_driver_client.cpp.s
-.PHONY : src/ydlidar_ros2_driver_client.cpp.s
-
-src/ydlidar_ros2_driver_node.o: src/ydlidar_ros2_driver_node.cpp.o
-.PHONY : src/ydlidar_ros2_driver_node.o
-
-# target to build an object file
-src/ydlidar_ros2_driver_node.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_node.dir/build.make CMakeFiles/ydlidar_ros2_driver_node.dir/src/ydlidar_ros2_driver_node.cpp.o
-.PHONY : src/ydlidar_ros2_driver_node.cpp.o
-
-src/ydlidar_ros2_driver_node.i: src/ydlidar_ros2_driver_node.cpp.i
-.PHONY : src/ydlidar_ros2_driver_node.i
-
-# target to preprocess a source file
-src/ydlidar_ros2_driver_node.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_node.dir/build.make CMakeFiles/ydlidar_ros2_driver_node.dir/src/ydlidar_ros2_driver_node.cpp.i
-.PHONY : src/ydlidar_ros2_driver_node.cpp.i
-
-src/ydlidar_ros2_driver_node.s: src/ydlidar_ros2_driver_node.cpp.s
-.PHONY : src/ydlidar_ros2_driver_node.s
-
-# target to generate assembly for a file
-src/ydlidar_ros2_driver_node.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ydlidar_ros2_driver_node.dir/build.make CMakeFiles/ydlidar_ros2_driver_node.dir/src/ydlidar_ros2_driver_node.cpp.s
-.PHONY : src/ydlidar_ros2_driver_node.cpp.s
+controller_pkg_uninstall/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/controller_pkg_uninstall.dir/build.make CMakeFiles/controller_pkg_uninstall.dir/build
+.PHONY : controller_pkg_uninstall/fast
 
 # Help Target
 help:
@@ -284,16 +210,8 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... controller_pkg_uninstall"
 	@echo "... uninstall"
-	@echo "... ydlidar_ros2_driver_uninstall"
-	@echo "... ydlidar_ros2_driver_client"
-	@echo "... ydlidar_ros2_driver_node"
-	@echo "... src/ydlidar_ros2_driver_client.o"
-	@echo "... src/ydlidar_ros2_driver_client.i"
-	@echo "... src/ydlidar_ros2_driver_client.s"
-	@echo "... src/ydlidar_ros2_driver_node.o"
-	@echo "... src/ydlidar_ros2_driver_node.i"
-	@echo "... src/ydlidar_ros2_driver_node.s"
 .PHONY : help
 
 
