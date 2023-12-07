@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/canada/ydlidar_ros2_ws/src/ydlidar_ros2_driver
+CMAKE_SOURCE_DIR = /home/canada/ugokuita_ws/ros2_ugokuita_ws/src/ydlidar_ros2_driver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver
+CMAKE_BINARY_DIR = /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/ydlidar_ros2_driver
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/canada/ydlidar_ros2_ws/src/ydlidar_ros2_driver /home/canada/ydlidar_ros2_ws/src/ydlidar_ros2_driver /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver /home/canada/ydlidar_ros2_ws/build/ydlidar_ros2_driver/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/ydlidar_ros2_driver && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/canada/ugokuita_ws/ros2_ugokuita_ws/src/ydlidar_ros2_driver /home/canada/ugokuita_ws/ros2_ugokuita_ws/src/ydlidar_ros2_driver /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/ydlidar_ros2_driver /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/ydlidar_ros2_driver /home/canada/ugokuita_ws/ros2_ugokuita_ws/build/ydlidar_ros2_driver/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

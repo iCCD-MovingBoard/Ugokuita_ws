@@ -1,9 +1,0 @@
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/uninstall.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/controller_pkg_uninstall.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/test.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/edit_cache.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/rebuild_cache.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/list_install_components.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/install.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/install/local.dir
-/home/canada/ugokuita_ws/ros2_ugokuita_ws/build/controller_pkg/CMakeFiles/install/strip.dir
