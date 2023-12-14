@@ -2,8 +2,8 @@ import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import String
-from .lib.str_converter import str_converter
-from .lib.uart import uart
+from .lib import str_converter
+from .lib import uart
 
 class MotorSubscriber(Node):
   def __init__(self):
