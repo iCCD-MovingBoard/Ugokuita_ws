@@ -1,5 +1,6 @@
-import uart
-import str_converter
+
+import ros2_ugokuita_ws.src.motor_pkg.motor_pkg.lib.uart as uart
+import ros2_ugokuita_ws.src.motor_pkg.motor_pkg.lib.str_converter as str_converter
 import time
 import ros2_ugokuita_ws.src.controller_pkg.lib.controller as controller
 from logging import getLogger
@@ -18,8 +19,8 @@ def main():
             speeds: list[int] = str_converter.to_speeds(controller_data)
             #print(speeds)
 
-            uart.send_to_motordriver(uart.uart_port1, speeds['left'])
-            receive_data1 = uart.uart_port1.readline()
+            uart.send_to_motordriver(uart.uart_port, speeds['left'])
+            receive_data1 = uart.uart_port.readline()
 
             uart.send_to_motordriver(uart.uart_port2, speeds['right'])
             receive_data2 = uart.uart_port2.readline()
@@ -31,7 +32,7 @@ def main():
             #break
 
     except KeyboardInterrupt:
-        uart.uart_port1.close()
+        uart.uart_port.close()
         uart.uart_port2.close()
 
 if __name__ == '__main__':

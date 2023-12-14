@@ -79,7 +79,8 @@ _colcon_package_sh_source_script() {
 
 # source sh hooks
 _colcon_package_sh_source_script "$COLCON_CURRENT_PREFIX/share/motor_pkg/hook/cmake_prefix_path.sh"
-_colcon_package_sh_source_script "$COLCON_CURRENT_PREFIX/share/motor_pkg/local_setup.sh"
+_colcon_package_sh_source_script "$COLCON_CURRENT_PREFIX/share/motor_pkg/hook/pythonpath.sh"
+_colcon_package_sh_source_script "$COLCON_CURRENT_PREFIX/share/motor_pkg/hook/ament_prefix_path.sh"
 
 unset _colcon_package_sh_source_script
 unset COLCON_CURRENT_PREFIX
