@@ -3,18 +3,12 @@ import launch.actions
 import launch.substitutions
 import launch_ros.actions
 
-import os
-import platform
-
-import re
+import subprocess
 
 def detect_os_version():
-  os_version: str = platform.version()
-  version: str = re.search(r'~[\d]*', os_version).group()
-  version: str = version[1:]
-  version: int = int(version)
-  # print(version)
-  return version
+  version_id: str = (subprocess.Popen('. /etc/os-release && echo $VERSION_ID', stdout=subprocess.PIPE, shell=True).communicate()[0]).decode('utf-8')
+  version_id: float = float(version_id)
+  return version_id
 
 
 def generate_launch_description():
