@@ -1,1 +1,0 @@
-/home/canada/ydlidar_ros2_driver/startup/initenv.sh

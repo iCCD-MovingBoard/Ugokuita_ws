@@ -1,2 +1,0 @@
-Invoking command in '/home/canada/ydlidar_ros2_driver/build/ydlidar_ros2_driver': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/canada/ydlidar_ros2_driver -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/canada/ydlidar_ros2_driver/install/ydlidar_ros2_driver
-Invoked command in '/home/canada/ydlidar_ros2_driver/build/ydlidar_ros2_driver' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/canada/ydlidar_ros2_driver -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/canada/ydlidar_ros2_driver/install/ydlidar_ros2_driver
