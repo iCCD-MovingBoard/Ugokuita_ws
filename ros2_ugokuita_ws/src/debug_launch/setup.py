@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-package_name = 'debug_launch_controller_controll'
+package_name = 'debug_launch'
 
 setup(
     name=package_name,
