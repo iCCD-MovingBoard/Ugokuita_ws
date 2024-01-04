@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "../etlidar_test"
-  "../etlidar_test.pdb"
   "CMakeFiles/etlidar_test.dir/etlidar_test.cpp.o"
-  "CMakeFiles/etlidar_test.dir/etlidar_test.cpp.o.d"
+  "../etlidar_test.pdb"
+  "../etlidar_test"
 )
 
 # Per-language clean rules from dependency scanning.

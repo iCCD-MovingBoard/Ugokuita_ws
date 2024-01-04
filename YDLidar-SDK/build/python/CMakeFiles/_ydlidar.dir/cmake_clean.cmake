@@ -1,6 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/_ydlidar.dir/CMakeFiles/_ydlidar.dir/ydlidar_sdkPYTHON_wrap.cxx.o"
-  "CMakeFiles/_ydlidar.dir/CMakeFiles/_ydlidar.dir/ydlidar_sdkPYTHON_wrap.cxx.o.d"
+  "ydlidar_sdkPYTHON_wrap.cxx"
+  "ydlidar.py"
+  "ydlidar_sdkPYTHON_wrap.cxx"
+  "ydlidar.py"
+  "CMakeFiles/_ydlidar.dir/ydlidar_sdkPYTHON_wrap.cxx.o"
   "_ydlidar.pdb"
   "_ydlidar.so"
 )

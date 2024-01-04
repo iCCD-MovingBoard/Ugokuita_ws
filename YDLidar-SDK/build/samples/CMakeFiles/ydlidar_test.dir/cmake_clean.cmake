@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "../ydlidar_test"
-  "../ydlidar_test.pdb"
   "CMakeFiles/ydlidar_test.dir/ydlidar_test.cpp.o"
-  "CMakeFiles/ydlidar_test.dir/ydlidar_test.cpp.o.d"
+  "../ydlidar_test.pdb"
+  "../ydlidar_test"
 )
 
 # Per-language clean rules from dependency scanning.

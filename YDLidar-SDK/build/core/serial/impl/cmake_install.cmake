@@ -1,4 +1,4 @@
-# Install script for directory: /home/canada/YDLidar-SDK/core/serial/impl
+# Install script for directory: /home/iccd/Documents/Ugokuita_ws/YDLidar-SDK/core/serial/impl
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,14 +37,9 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
-endif()
-
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/canada/YDLidar-SDK/build/core/serial/impl/unix/cmake_install.cmake")
+  include("/home/iccd/Documents/Ugokuita_ws/YDLidar-SDK/build/core/serial/impl/unix/cmake_install.cmake")
 
 endif()
 

@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "../tof_test"
-  "../tof_test.pdb"
   "CMakeFiles/tof_test.dir/tof_test.cpp.o"
-  "CMakeFiles/tof_test.dir/tof_test.cpp.o.d"
+  "../tof_test.pdb"
+  "../tof_test"
 )
 
 # Per-language clean rules from dependency scanning.
