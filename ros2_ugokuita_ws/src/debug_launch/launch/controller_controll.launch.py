@@ -13,15 +13,15 @@ def detect_os_version():
 
 def generate_launch_description():
   os_version: int = detect_os_version()
-  if os_version == 18:
+  if os_version == 18.04:
     return launch.LaunchDescription([
       launch_ros.actions.Node(package='controller_pkg', node_executable='controller_publisher'),
-      launch_ros.actions.Node(package='motor_pkg',      node_executable='motor_subscriber')
+      launch_ros.actions.Node(package='motor_pkg',      node_executable='motor_subscriber', output='screen')
     ])
-  elif os_version == 22:
+  elif os_version == 22.04:
     return launch.LaunchDescription([
       launch_ros.actions.Node(package='controller_pkg', executable='controller_publisher'),
-      launch_ros.actions.Node(package='motor_pkg',      executable='motor_subscriber')
+      launch_ros.actions.Node(package='motor_pkg',      executable='motor_subscriber', output='screen')
     ])
 
 if __name__ == '__main__':
