@@ -17,19 +17,11 @@ from launch.actions import LogInfo
 import lifecycle_msgs.msg
 import os
 
-def detect_os_version():
-  version_id: str = (subprocess.Popen('. /etc/os-release && echo $VERSION_ID', stdout=subprocess.PIPE, shell=True).communicate()[0]).decode('utf-8')
-  version_id: float = float(version_id)
-  return version_id
-
 def controller_motor_nodes():
-  os_version: int = detect_os_version()
-  if os_version == 18.04:
-    controller_node = launch_ros.actions.Node(package='controller_pkg', node_executable='controller_publisher')
-    motor_node      = launch_ros.actions.Node(package='motor_pkg',      node_executable='motor_subscriber', output='screen')
-  elif os_version == 22.04:
-    controller_node = launch_ros.actions.Node(package='controller_pkg', executable='controller_publisher')
-    motor_node      = launch_ros.actions.Node(package='motor_pkg',      executable='motor_subscriber', output='screen')
+  controller_node = launch_ros.actions.Node(package='controller_pkg', node_executable='controller_publisher')
+  motor_node      = launch_ros.actions.Node(package='motor_pkg',      node_executable='motor_subscriber'
+                                            # ,output='screen'
+                                            )
   return controller_node, motor_node
 
 def lidar_nodes():
@@ -42,7 +34,7 @@ def lidar_nodes():
                                               share_dir, 'params', 'ydlidar.yaml'),
                                           description='FPath to the ROS2 parameters file to use.')
 
-  driver_node = LifecycleNode(package='ydlidar_ros2_driver',
+  driver_node = Node(package='ydlidar_ros2_driver',
                               node_executable='ydlidar_ros2_driver_node',
                               node_name='ydlidar_ros2_driver_node',
                               output='screen',
@@ -62,12 +54,12 @@ def generate_launch_description():
   params_declare, driver_node, tf2_node = lidar_nodes()
   
   return LaunchDescription([
-    controller_node,
-    motor_node,
-
     params_declare,
     driver_node,
     tf2_node,
+
+    controller_node,
+    motor_node,
   ])
   
 
