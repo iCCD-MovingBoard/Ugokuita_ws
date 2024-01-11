@@ -2,8 +2,8 @@ import serial
 import time
 from subprocess import run
 
-jetson_port = '/dev/ttyUSB0'
-run(f'sudo chmod 777 {jetson_port}', shell=True)
+jetson_port = '/dev/uart_usb'
+#run(f'sudo chmod 777 {jetson_port}', shell=True)
 
 BAUDRATE = 9600
 TIMEOUT = 0.01
@@ -44,6 +44,7 @@ def main():
                 send_data = bytes([i])
                 uart_port.write(send_data)
                 receive_data = uart_port.readline()
+                print(receive_data)
                 
                 time.sleep(TIMEOUT)
     except KeyboardInterrupt:
