@@ -2,14 +2,14 @@
 for option in "$@"
 do
   if [ "${option}" = "build" ]; then
-    echo "build"
-    # colcon build --symlink --packages-select controller_pkg motor_pkg  debug_launch ydlidar_ros2_driver
+    # echo "build"
+    colcon build --symlink --packages-select controller_pkg motor_pkg  debug_launch ydlidar_ros2_driver
   fi
 done
 
 . install/setup.bash
 
-echo "run"
+# echo "run"
 for option in "$@"
 do
   if [ "${option}" = "view" ]; then
