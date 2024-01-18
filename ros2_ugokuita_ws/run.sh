@@ -1,12 +1,20 @@
 #!/bin/bash
-if [ $# -ge 1 ]; then
-  if [ $1 = "build" ]; then
-    #echo "build"
-    colcon build --symlink --packages-select controller_pkg motor_pkg  debug_launch ydlidar_ros2_driver
+for option in "$@"
+do
+  if [ "${option}" = "build" ]; then
+    echo "build"
+    # colcon build --symlink --packages-select controller_pkg motor_pkg  debug_launch ydlidar_ros2_driver
   fi
-fi
-#echo "run"
+done
+
 . install/setup.bash
-ros2 launch debug_launch controller_controll.launch.py
-# ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
-```
+
+echo "run"
+for option in "$@"
+do
+  if [ "${option}" = "view" ]; then
+    ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
+  else
+    ros2 launch debug_launch controller_controll.launch.py
+  fi
+done
