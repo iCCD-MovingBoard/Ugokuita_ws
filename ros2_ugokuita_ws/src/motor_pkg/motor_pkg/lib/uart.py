@@ -18,7 +18,7 @@ uart_port = serial.Serial(jetson_port,
                             parity=PARITY,
                             bytesize=BYTESIZE)
 
-# 0 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
+# -32768 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
 def scale_speed(speed):
     CONTROLLER_MAX_VALUE = 32767
     UART_MAX_VALUE = 254
