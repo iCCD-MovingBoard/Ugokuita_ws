@@ -28,7 +28,11 @@ class Joycon:
 		return (str(self.left) + ',' + str(self.right))
 
 	def clamp(self, n):
-		return min(32767, max(-32768, n))
+		minimum_value = -32768
+		maximum_value = 32767
+		upper_clamped_value = min(n, maximum_value)
+		upper_lower_clamped_value = max(upper_clamped_value, minimum_value)
+		return upper_lower_clamped_value
 
 
 def main():
