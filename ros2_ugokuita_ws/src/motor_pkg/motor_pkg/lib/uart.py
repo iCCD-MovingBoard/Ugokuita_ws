@@ -30,8 +30,6 @@ def scale_speed(speed):
 def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_r = scale_speed(speed_r)
     scaled_speed_l = scale_speed(speed_l)
-    port.write(bytes([0xFF]))
-    port.write(b',')
     port.write(bytes([scaled_speed_r]))
     port.write(b',')
     port.write(bytes([scaled_speed_l]))
