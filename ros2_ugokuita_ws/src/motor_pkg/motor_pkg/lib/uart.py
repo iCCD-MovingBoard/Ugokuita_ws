@@ -20,20 +20,20 @@ uart_port = serial.Serial(jetson_port,
 
 # -32768 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
 def scale_speed(speed):
+    # 入力された値が一定以上小さい場合は入力を無効とする。
+    # 今は閾値が1000になっているが割と適当に決めている。
+    if speed < 1000: speed = 0
     CONTROLLER_MAX_VALUE = 32767
-    UART_MAX_VALUE = 254
+    UART_MAX_VALUE = 1
     CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
-    speed = int(speed * CONV_RATE)
-    if speed < 10: speed = 0
+    speed = speed * CONV_RATE
     return speed
 
 def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_r = scale_speed(speed_r)
     scaled_speed_l = scale_speed(speed_l)
-    port.write(bytes([scaled_speed_r]))
-    port.write(b',')
-    port.write(bytes([scaled_speed_l]))
-    port.write(b'\r\n')
+    port.write(f'RVD{scaled_speed_r}\r\n')
+    port.write(f'LVD{scaled_speed_l}\r\n')
 
 def main():
     try:
