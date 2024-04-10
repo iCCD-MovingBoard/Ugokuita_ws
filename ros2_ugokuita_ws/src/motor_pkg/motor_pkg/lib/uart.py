@@ -31,7 +31,7 @@ def scale_speed(speed):
     UART_MAX_VALUE = 5000
     UART_MIN_VALUE = 2000
     CONV_RATE = (UART_MAX_VALUE - UART_MIN_VALUE) / CONTROLLER_MAX_VALUE
-    speed = UART_MAX_VALUE - speed * CONV_RATE
+    speed = UART_MAX_VALUE - abs(speed) * CONV_RATE
     return int(speed)
     
 # 通信Protocol: 0xFF,R,R_D,L,L_D\r\n
