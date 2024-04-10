@@ -1,14 +1,15 @@
 import serial
 import time
 from subprocess import run
+import json
 
 jetson_port = '/dev/uart_usb'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
 
 BAUDRATE = 115200
-TIMEOUT = 0.01
+TIMEOUT  = 0.01
 STOPBITS = serial.STOPBITS_ONE
-PARITY = serial.PARITY_NONE
+PARITY   = serial.PARITY_NONE
 BYTESIZE = serial.EIGHTBITS
 
 uart_port = serial.Serial(jetson_port,
@@ -42,11 +43,16 @@ def scale_speed(speed):
 def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_r = scale_speed(speed_r)
     scaled_speed_l = scale_speed(speed_l)
-    direction_r = 0 if scaled_speed_r > 0 else 1
-    direction_l = 0 if scaled_speed_l > 0 else 1
-    port.write(bytes([0xFF]))
-    port.write((f',{scaled_speed_r},{direction_r}').encode())
-    port.write((f',{scaled_speed_l},{direction_l}\r\n').encode())
+    is_forward_r = True if scaled_speed_r > 0 else False
+    is_forward_l = True if scaled_speed_l > 0 else False
+    send_data_dict = {
+        "rspeed": scaled_speed_r,
+        "lspeed": scaled_speed_l,
+        "rIsForward": is_forward_r,
+        "lIsForward": is_forward_l
+    }
+    send_data_str = json.dumps(send_data_dict)
+    port.write(send_data_dict)
 
 def main():
     try:
