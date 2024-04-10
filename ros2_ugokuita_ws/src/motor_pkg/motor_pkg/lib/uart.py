@@ -52,7 +52,7 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
         "lIsForward": is_forward_l
     }
     send_data_str = json.dumps(send_data_dict)
-    port.write(send_data_dict)
+    port.write(send_data_dict.encode())
 
 def main():
     try:
