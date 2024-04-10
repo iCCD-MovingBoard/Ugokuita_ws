@@ -3,7 +3,7 @@ import time
 from subprocess import run
 import json
 
-jetson_port = '/dev/uart_usb'
+jetson_port = '/dev/uart_pico'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
 
 BAUDRATE = 115200
