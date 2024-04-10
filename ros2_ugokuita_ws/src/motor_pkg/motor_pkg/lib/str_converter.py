@@ -7,7 +7,7 @@ def to_speeds(str):
     speeds = []
     for speed in speeds_str:
         speed_str = speed.strip()
-        speed: int = int(speed)
+        speed: int = int(speed_str)
         speeds.append(speed)
     speeds = {'left': speeds[0], 'right': speeds[1]}
     return speeds
