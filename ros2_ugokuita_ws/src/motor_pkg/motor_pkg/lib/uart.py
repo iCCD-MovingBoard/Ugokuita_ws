@@ -5,7 +5,7 @@ from subprocess import run
 jetson_port = '/dev/uart_usb'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
 
-BAUDRATE = 9600
+BAUDRATE = 115200
 TIMEOUT = 0.01
 STOPBITS = serial.STOPBITS_ONE
 PARITY = serial.PARITY_NONE
@@ -44,18 +44,19 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_l = scale_speed(speed_l)
     direction_r = 0 if scaled_speed_r > 0 else 1
     direction_l = 0 if scaled_speed_l > 0 else 1
-    port.write(0xff)
-    port.write(f',{scaled_speed_r},{direction_r}')
-    port.write(f',{scaled_speed_l},{direction_l}\r\n')
+    port.write(bytes([0xFF]))
+    port.write((f',{scaled_speed_r},{direction_r}').encode())
+    port.write((f',{scaled_speed_l},{direction_l}\r\n').encode())
 
 def main():
     try:
         while True:
-            for i in range(256):
-                send_data = bytes([i])
-                uart_port.write(send_data)
+            for i in range(900,32767):
+                # send_data = bytes([i])
+                # uart_port.write(send_data)
+                send_to_motordriver(uart_port, i,i)
                 receive_data = uart_port.readline()
-                print(receive_data)
+                print(i, receive_data)
                 
                 time.sleep(TIMEOUT)
     except KeyboardInterrupt:
