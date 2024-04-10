@@ -52,7 +52,7 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
         "lIsForward": is_forward_l
     }
     send_data_str = json.dumps(send_data_dict)
-    port.write(send_data_str.encode())
+    port.write(f'{send_data_str}\n\r'.encode())
     receive_data = uart_port.readline()
     return str(receive_data)
     
