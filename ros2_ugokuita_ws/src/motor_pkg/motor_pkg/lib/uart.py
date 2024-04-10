@@ -25,7 +25,8 @@ uart_port = serial.Serial(jetson_port,
 def scale_speed(speed):
     # 入力された値が一定以上小さい場合は入力を無効とする。
     # 今は閾値が1000になっているが割と適当に決めている。
-    if -1000 < speed < 1000:
+    threshold = 500
+    if -threshold < speed < threshold:
         return 5001
     CONTROLLER_MAX_VALUE = 32767
     UART_MAX_VALUE = 5000
@@ -59,8 +60,6 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
     # }
     send_data_str = json.dumps(send_data_dict)
     port.write(f'{send_data_str}\n\r'.encode())
-    receive_data = uart_port.readline()
-    return str(receive_data)
     
 
 def main():
