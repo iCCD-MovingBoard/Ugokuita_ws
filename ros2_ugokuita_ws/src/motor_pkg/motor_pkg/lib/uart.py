@@ -31,7 +31,7 @@ def scale_speed(speed):
     UART_MAX_VALUE = 5000
     UART_MIN_VALUE = 2000
     CONV_RATE = (UART_MAX_VALUE - UART_MIN_VALUE) / CONTROLLER_MAX_VALUE
-    speed = UART_MAX_VALUE - speed * CONV_RATE
+    speed = UART_MAX_VALUE - abs(speed) * CONV_RATE
     return int(speed)
     
 # 通信Protocol: 0xFF,R,R_D,L,L_D\r\n
@@ -41,8 +41,8 @@ def scale_speed(speed):
 # L_D: 左モーターの方向 0 ~ 1 (0: 正転, 1: 逆転)
 # 5001を送ると停止する
 def send_to_motordriver(port, speed_r: int, speed_l:int):
-    scaled_speed_r = abs(scale_speed(speed_r))
-    scaled_speed_l = abs(scale_speed(speed_l))
+    scaled_speed_r = scale_speed(speed_r)
+    scaled_speed_l = scale_speed(speed_l)
     is_forward_r = True if speed_r > 0 else False
     is_forward_l = True if speed_l > 0 else False
     send_data_dict = {
