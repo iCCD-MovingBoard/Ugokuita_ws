@@ -45,11 +45,17 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_l = scale_speed(speed_l)
     is_forward_r = True if speed_r > 0 else False
     is_forward_l = True if speed_l > 0 else False
+    # send_data_dict = {
+    #     "rspeed": scaled_speed_r,
+    #     "lspeed": scaled_speed_l,
+    #     "rIsForward": is_forward_r,
+    #     "lIsForward": is_forward_l
+    # }
     send_data_dict = {
-        "rspeed": scaled_speed_r,
-        "lspeed": scaled_speed_l,
-        "rIsForward": is_forward_r,
-        "lIsForward": is_forward_l
+        "rspeed": 3000,
+        "lspeed": 3000,
+        "rIsForward": True,
+        "lIsForward": True
     }
     send_data_str = json.dumps(send_data_dict)
     port.write(f'{send_data_str}\n\r'.encode())
