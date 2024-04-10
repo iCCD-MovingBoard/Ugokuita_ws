@@ -32,7 +32,7 @@ def scale_speed(speed):
     UART_MIN_VALUE = 2000
     CONV_RATE = (UART_MAX_VALUE - UART_MIN_VALUE) / CONTROLLER_MAX_VALUE
     speed = UART_MAX_VALUE - speed * CONV_RATE
-    return speed
+    return int(speed)
     
 # 通信Protocol: 0xFF,R,R_D,L,L_D\r\n
 # R: 右モーターの速度 500 ~ 5000
