@@ -23,8 +23,8 @@ uart_port = serial.Serial(jetson_port,
 def scale_speed(speed):
     # 入力された値が一定以上小さい場合は入力を無効とする。
     # 今は閾値が1000になっているが割と適当に決めている。
-    threshold = 1000
-    if -threshold < speed < threshold: speed = 0
+    threshold = 100
+    if -threshold < speed < threshold: return 0
     CONTROLLER_MAX_VALUE = 32767
     UART_MAX_VALUE = 3
     CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
