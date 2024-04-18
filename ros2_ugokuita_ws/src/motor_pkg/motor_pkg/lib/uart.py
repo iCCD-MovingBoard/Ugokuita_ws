@@ -23,34 +23,34 @@ uart_port = serial.Serial(jetson_port,
 def scale_speed(speed):
     # 入力された値が一定以上小さい場合は入力を無効とする。
     # 今は閾値が1000になっているが割と適当に決めている。
-    if speed < 1000: speed = 0
+    threshold = 1000
+    if -threshold < speed < threshold: speed = 0
     CONTROLLER_MAX_VALUE = 32767
-    UART_MAX_VALUE = 1
+    UART_MAX_VALUE = 3
     CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
-    speed = speed * CONV_RATE
-    return speed
+    scaled_speed = speed * CONV_RATE
+    return scaled_speed
 
 def send_to_motordriver(port, speed_r: int, speed_l:int):
-    scaled_speed_r = abs(scale_speed(speed_r))
-    scaled_speed_l = abs(scale_speed(speed_l))
-    is_forward_r = True if speed_r > 0 else False
-    is_forward_l = True if speed_l > 0 else False
-    send_data_dict = {
-        "rspeed": scaled_speed_r,
-        "lspeed": scaled_speed_l,
-        "rIsForward": is_forward_r,
-        "lIsForward": is_forward_l
-    }
-    send_data_str = json.dumps(send_data_dict)
+    scaled_speed_r = scale_speed(speed_r)
+    scaled_speed_l = scale_speed(speed_l)
+
     if port.is_open:
-        port.write(f'{send_data_str}\n\r'.encode())    
+        port.write(b'R')
+        port.write(bytes([int(scaled_speed_r)]))
+        port.write('\n')
+
+        port.write(b'L')
+        port.write(bytes([int(scaled_speed_l)]))
+        port.write('\n')
 
 def main():
     try:
         while True:
-            for i in range(256):
-                send_data = bytes([i])
-                uart_port.write(send_data)
+            for i in range(-1100, 1100, 10):
+                send_to_motordriver(uart_port, i, i)
+                receive_data = uart_port.readline()
+                print(receive_data)
                 receive_data = uart_port.readline()
                 print(receive_data)
                 
