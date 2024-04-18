@@ -36,13 +36,8 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_l = scale_speed(speed_l)
 
     if port.is_open:
-        port.write(b'R')
-        port.write(bytes([int(scaled_speed_r)]))
-        port.write('\n')
-
-        port.write(b'L')
-        port.write(bytes([int(scaled_speed_l)]))
-        port.write('\n')
+        port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
+        port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
 
 def main():
     try:
