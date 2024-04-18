@@ -29,7 +29,7 @@ def scale_speed(speed):
     UART_MAX_VALUE = 3
     CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
     scaled_speed = speed * CONV_RATE
-    return scaled_speed
+    return round(scaled_speed, 2)
 
 def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_r = scale_speed(speed_r)
