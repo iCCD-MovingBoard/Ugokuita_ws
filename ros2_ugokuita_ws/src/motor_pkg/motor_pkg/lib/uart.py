@@ -6,7 +6,7 @@ import json
 jetson_port = '/dev/uart_usb'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
 
-BAUDRATE = 9600
+BAUDRATE = 115200
 TIMEOUT = 0.01
 STOPBITS = serial.STOPBITS_ONE
 PARITY = serial.PARITY_NONE
