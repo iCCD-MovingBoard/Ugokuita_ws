@@ -25,7 +25,7 @@ UART_MAX_VALUE = 4
 def scale_speed(speed):
     # 入力された値が一定以上小さい場合は入力を無効とする。
     # 今は閾値が1000になっているが割と適当に決めている。
-    threshold = 100
+    threshold = 1000
     if -threshold < speed < threshold: return 0
     CONTROLLER_MAX_VALUE = 32767
     CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
@@ -42,7 +42,7 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
     if scaled_speed_r < -threshold and scaled_speed_l < -threshold:
         scaled_speed_r = -UART_MAX_VALUE
         scaled_speed_l = -UART_MAX_VALUE
-
+    
     port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
     port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
 
