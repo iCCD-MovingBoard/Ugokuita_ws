@@ -9,5 +9,5 @@ def to_speeds(str):
         speed_str = speed.strip()
         speed: int = int(speed)
         speeds.append(speed)
-    speeds = {'left': speeds[0], 'right': speeds[1]}
+    speeds = {'left': speeds[0], 'right': speeds[1], 'x_button': speeds[2]}
     return speeds
