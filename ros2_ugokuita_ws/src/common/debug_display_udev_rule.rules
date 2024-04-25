@@ -1,0 +1,1 @@
+KERNEL=="ttyACM*", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", SYMLINK+="debug_display"
