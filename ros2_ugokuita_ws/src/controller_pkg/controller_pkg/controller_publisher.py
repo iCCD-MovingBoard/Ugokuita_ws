@@ -2,8 +2,8 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from .lib.controller import Joycon
-class ControllerPublisher(Node):
-  
+
+class ControllerPublisher(Node):  
   def __init__(self):
     super().__init__('controller_publisher')
     self.publisher_ = self.create_publisher(String, 'motor_topic', 10)
