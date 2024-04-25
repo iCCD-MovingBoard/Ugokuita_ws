@@ -5,10 +5,7 @@ from ....common.debug_display import debug
 
 class Joycon:
 	def __init__(self, path):
-		try:		
-			self.gamepad = open(path, "rb")
-		except:
-			debug.write('Failed to open Joycon\n')
+		self.gamepad = open(path, "rb")
 		self.x = 0
 		self.y = 0
 		self.left = 0

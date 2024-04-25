@@ -2,7 +2,7 @@ import serial
 import time
 from subprocess import run
 import json
-from ....common.debug_display import debug
+from .debug_display import debug
 
 jetson_port = '/dev/uart_usb'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
