@@ -9,6 +9,7 @@ class Joycon:
 		self.y = 0
 		self.left = 0
 		self.right = 0
+		self.x_button = 0
 		self.t = threading.Thread(target = self.loop)
 		self.t.start()
 
@@ -24,6 +25,9 @@ class Joycon:
 				self.left = self.clamp(self.x - self.y)
 				self.right = self.clamp(-self.x - self.y)
 				#print(self.left, self.right, sep = ',')
+			else:
+				if(index == 2):
+					self.x_button = value
 	def get(self):
 		return (str(self.left) + ',' + str(self.right))
 
