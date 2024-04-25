@@ -2,7 +2,6 @@ import serial
 import time
 from subprocess import run
 import json
-from ....common.debug_display import debug
 
 jetson_port = '/dev/uart_usb'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
@@ -13,15 +12,12 @@ STOPBITS = serial.STOPBITS_ONE
 PARITY = serial.PARITY_NONE
 BYTESIZE = serial.EIGHTBITS
 
-try:
-    uart_port = serial.Serial(jetson_port,
+uart_port = serial.Serial(jetson_port,
                             baudrate=BAUDRATE,
                             timeout=TIMEOUT,
                             stopbits=STOPBITS,
                             parity=PARITY,
                             bytesize=BYTESIZE)
-except:
-    debug.write('Failed to open UART port\n')
 
 # -32768 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
 def scale_speed(speed):
