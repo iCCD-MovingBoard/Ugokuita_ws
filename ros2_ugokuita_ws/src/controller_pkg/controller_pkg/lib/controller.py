@@ -29,7 +29,7 @@ class Joycon:
 				if(index == 2):
 					self.x_button = value
 	def get(self):
-		return (str(self.left) + ',' + str(self.right) + ',' + str(self.x_button))
+		return str(self.left) + ',' + str(self.right) + ',' + str(self.x_button)
 
 	def clamp(self, n):
 		minimum_value = -32768

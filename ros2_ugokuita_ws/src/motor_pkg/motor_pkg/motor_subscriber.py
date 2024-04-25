@@ -13,7 +13,7 @@ class MotorSubscriber(Node):
 
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg.data)
-    speeds: list[int] = str_converter.to_speeds(msg.data)
+    speeds: dict = str_converter.to_speeds(msg.data)
     uart.send_to_motordriver(uart.uart_port, speeds['right'], speeds['left'], speeds['x_button'])
 
 def main(args=None):
