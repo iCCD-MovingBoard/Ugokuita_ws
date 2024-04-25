@@ -9,14 +9,15 @@ class DebugDisplay:
     def close(self):
         self.port.close()
 
+debug = DebugDisplay()
+
 def main():
-    debug_display = DebugDisplay()
     for i in range(100):
         message = ''
         for j in range(i):
             message += f'{i}'
         message+='\n'
-        debug_display.write( message )
+        debug.write( message )
         print( message , end='')
         time.sleep(0.1)
 
