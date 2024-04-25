@@ -3,7 +3,7 @@ import time
 from subprocess import run
 import json
 
-jetson_port = '/dev/uart_usb'
+jetson_port = '/dev/uart_pico'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
 
 BAUDRATE = 115200
@@ -19,6 +19,8 @@ uart_port = serial.Serial(jetson_port,
                             parity=PARITY,
                             bytesize=BYTESIZE)
 
+UART_MAX_VALUE = 4
+
 # -32768 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
 def scale_speed(speed):
     # 入力された値が一定以上小さい場合は入力を無効とする。
@@ -26,7 +28,6 @@ def scale_speed(speed):
     threshold = 100
     if -threshold < speed < threshold: return 0
     CONTROLLER_MAX_VALUE = 32767
-    UART_MAX_VALUE = 3
     CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
     scaled_speed = speed * CONV_RATE
     return round(scaled_speed, 2)
@@ -34,6 +35,13 @@ def scale_speed(speed):
 def send_to_motordriver(port, speed_r: int, speed_l:int):
     scaled_speed_r = scale_speed(speed_r)
     scaled_speed_l = scale_speed(speed_l)
+    threshold = UART_MAX_VALUE*0.9
+    if scaled_speed_r > threshold and scaled_speed_l > threshold:
+        scaled_speed_r = UART_MAX_VALUE
+        scaled_speed_l = UART_MAX_VALUE
+    if scaled_speed_r < -threshold and scaled_speed_l < -threshold:
+        scaled_speed_r = -UART_MAX_VALUE
+        scaled_speed_l = -UART_MAX_VALUE
 
     if port.is_open:
         port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
