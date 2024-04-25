@@ -4,14 +4,12 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from .lib import str_converter
 from .lib import uart
-from ...common.debug_display import debug
 
 class MotorSubscriber(Node):
   def __init__(self):
     super().__init__('motor_subscriber')
     self.subscription = self.create_subscription(String, 'motor_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
-    debug.write('ready to Move\n')
 
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg.data)
