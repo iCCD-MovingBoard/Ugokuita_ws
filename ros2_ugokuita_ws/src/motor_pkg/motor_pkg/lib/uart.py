@@ -43,9 +43,8 @@ def send_to_motordriver(port, speed_r: int, speed_l:int):
         scaled_speed_r = -UART_MAX_VALUE
         scaled_speed_l = -UART_MAX_VALUE
 
-    if port.is_open:
-        port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
-        port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
+    port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
+    port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
 
 def main():
     try:
