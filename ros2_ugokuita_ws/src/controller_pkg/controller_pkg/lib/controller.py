@@ -72,8 +72,8 @@ class Joycon:
 					self.start_button = value
 
 	def get(self):
-		left = self.clamp(self.l_axis_x - self.l_axis_y)
-		right = self.clamp(-self.l_axis_x - self.l_axis_y)
+		# left = self.clamp(self.l_axis_x - self.l_axis_y)
+		# right = self.clamp(-self.l_axis_x - self.l_axis_y)
 		state = ''
 		for key in digital_button:
 			state += key + ':' + str(getattr(self, key.lower() + '_button')) + ','
@@ -81,12 +81,12 @@ class Joycon:
 			state += key + ':' + str(getattr(self, key.lower())) + ','
 		return state[:-1]
 
-	def clamp(self, n):
-		minimum_value = -32768
-		maximum_value = 32767
-		upper_clamped_value = min(n, maximum_value)
-		upper_lower_clamped_value = max(upper_clamped_value, minimum_value)
-		return upper_lower_clamped_value
+	# def clamp(self, n):
+	# 	minimum_value = -32768
+	# 	maximum_value = 32767
+	# 	upper_clamped_value = min(n, maximum_value)
+	# 	upper_lower_clamped_value = max(upper_clamped_value, minimum_value)
+	# 	return upper_lower_clamped_value
 
 
 def main():
