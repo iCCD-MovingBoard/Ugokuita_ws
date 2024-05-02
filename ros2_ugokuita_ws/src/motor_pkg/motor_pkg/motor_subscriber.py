@@ -13,7 +13,7 @@ class MotorSubscriber(Node):
 
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg.data)
-    controller_inputs: dict = str_converter.to_speeds(msg.data)
+    controller_inputs: dict = str_converter.to_dict(msg.data)
     norm = controller_inputs['RT'] -  controller_inputs['LT']
     right = 32767 - 2*abs(controller_inputs['L_Axis_x'])
     left = -32767 + 2*abs(controller_inputs['L_Axis_x'])
