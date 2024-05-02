@@ -19,7 +19,7 @@ class MotorSubscriber(Node):
     left = -32767 + 2*abs(int(controller_inputs['L_Axis_x']))
     uart.send_to_motordriver( right*norm,
                               left*norm,
-                              controller_inputs['x_button'])
+                              controller_inputs['X'])
 
 def main(args=None):
   try:
