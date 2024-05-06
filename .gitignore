@@ -1,0 +1,4 @@
+YDLidar-SDK/build/*
+ros2_ugokuita_ws/src/build/*
+ros2_ugokuita_ws/src/install/*
+ros2_ugokuita_ws/src/log/*
