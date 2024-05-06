@@ -1,3 +1,5 @@
+sudo apt-get install python swig
+sudo apt-get install python-pip
 sudo apt install cmake pkg-config
 sudo apt-get install swig
 sudo apt-get install python3-pip
