@@ -7,7 +7,7 @@ def test_to_speeds(str, correct_speeds):
     else:
         print('Test failed')
 
-test_to_speeds(b'+255, -255', [ 255, -255])
-test_to_speeds(b'-190, 0',    [-190,    0])
-test_to_speeds(b'0, 0',       [   0,    0])
-test_to_speeds(b'10, +0',     [  10,    0])
+test_to_speeds(b'+255, -255, 0', [ 255, -255, 0])
+test_to_speeds(b'-190, 0, 1',    [-190,    0, 1])
+test_to_speeds(b'0, 0, 0',       [   0,    0, 0])
+test_to_speeds(b'10, +0, 1',     [  10,    0, 1])

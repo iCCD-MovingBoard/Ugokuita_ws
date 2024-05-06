@@ -9,6 +9,7 @@ class Joycon:
 		self.y = 0
 		self.left = 0
 		self.right = 0
+		self.x_button = 0
 		self.t = threading.Thread(target = self.loop)
 		self.t.start()
 
@@ -24,11 +25,18 @@ class Joycon:
 				self.left = self.clamp(self.x - self.y)
 				self.right = self.clamp(-self.x - self.y)
 				#print(self.left, self.right, sep = ',')
+			else:
+				if(index == 2):
+					self.x_button = value
 	def get(self):
-		return (str(self.left) + ',' + str(self.right))
+		return str(self.left) + ',' + str(self.right) + ',' + str(self.x_button)
 
 	def clamp(self, n):
-		return min(32767, max(-32768, n))
+		minimum_value = -32768
+		maximum_value = 32767
+		upper_clamped_value = min(n, maximum_value)
+		upper_lower_clamped_value = max(upper_clamped_value, minimum_value)
+		return upper_lower_clamped_value
 
 
 def main():

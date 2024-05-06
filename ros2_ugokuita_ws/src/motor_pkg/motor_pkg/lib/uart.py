@@ -1,11 +1,12 @@
 import serial
 import time
 from subprocess import run
+import json
 
-jetson_port = '/dev/uart_usb'
+jetson_port = '/dev/uart_pico'
 #run(f'sudo chmod 777 {jetson_port}', shell=True)
 
-BAUDRATE = 9600
+BAUDRATE = 115200
 TIMEOUT = 0.01
 STOPBITS = serial.STOPBITS_ONE
 PARITY = serial.PARITY_NONE
@@ -18,31 +19,41 @@ uart_port = serial.Serial(jetson_port,
                             parity=PARITY,
                             bytesize=BYTESIZE)
 
-# 0 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
-def scale_speed(speed):
-    CONTROLLER_MAX_VALUE = 32767
-    UART_MAX_VALUE = 254
-    CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
-    speed = int(speed * CONV_RATE)
-    if speed < 10: speed = 0
-    return speed
+UART_MAX_VALUE = 4
 
-def send_to_motordriver(port, speed_r: int, speed_l:int):
+# -32768 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
+def scale_speed(speed):
+    # 入力された値が一定以上小さい場合は入力を無効とする。
+    # 今は閾値が1000になっているが割と適当に決めている。
+    threshold = 1000
+    if -threshold < speed < threshold: return 0
+    CONTROLLER_MAX_VALUE = 32767
+    CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
+    scaled_speed = speed * CONV_RATE
+    return round(scaled_speed, 2)
+
+def send_to_motordriver(port, speed_r: int, speed_l:int, x_button:int):
     scaled_speed_r = scale_speed(speed_r)
     scaled_speed_l = scale_speed(speed_l)
-    port.write(bytes([0xFF]))
-    port.write(b',')
-    port.write(bytes([scaled_speed_r]))
-    port.write(b',')
-    port.write(bytes([scaled_speed_l]))
-    port.write(b'\r\n')
+    threshold = UART_MAX_VALUE*0.9
+    if scaled_speed_r > threshold and scaled_speed_l > threshold:
+        scaled_speed_r = UART_MAX_VALUE
+        scaled_speed_l = UART_MAX_VALUE
+    if scaled_speed_r < -threshold and scaled_speed_l < -threshold:
+        scaled_speed_r = -UART_MAX_VALUE
+        scaled_speed_l = -UART_MAX_VALUE
+    
+    port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
+    port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
+    port.write(bytes(f'H{x_button}\n', encoding='ascii'))
 
 def main():
     try:
         while True:
-            for i in range(256):
-                send_data = bytes([i])
-                uart_port.write(send_data)
+            for i in range(-1100, 1100, 10):
+                send_to_motordriver(uart_port, i, i)
+                receive_data = uart_port.readline()
+                print(receive_data)
                 receive_data = uart_port.readline()
                 print(receive_data)
                 

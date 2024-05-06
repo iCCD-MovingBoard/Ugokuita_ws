@@ -10,11 +10,16 @@ done
 . install/setup.bash
 
 # echo "run"
+if [ $# -eq 0 ]; then
+    ros2 launch debug_launch controller_controll.launch.py
+    exit
+fi
+
 for option in "$@"
 do
   if [ "${option}" = "view" ]; then
     ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
-  else
-    ros2 launch debug_launch controller_controll.launch.py
   fi
 done
+
+#ros2 launch debug_launch controller_controll.launch.py
