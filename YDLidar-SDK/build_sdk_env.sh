@@ -6,4 +6,4 @@ cmake ..
 make
 sudo make install
 cd ..
-pip install .
+pip3 install .
