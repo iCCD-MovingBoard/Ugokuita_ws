@@ -11,8 +11,7 @@ $ ./install_ros2.sh
 $ cd YDLidar-SDK
 $ ./build_sdk_env.sh
 ```
-3. packageのbuild
+3. Realsenseのセットアップ
 ```bash
-$ cd ros2_ugokuita_ws
-$ ./run.sh build
+$ ./setup_realsense.sh
 ```

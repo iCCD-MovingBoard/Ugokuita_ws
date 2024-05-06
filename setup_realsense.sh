@@ -19,4 +19,4 @@ sudo rosdep init --include-eol-distros # for Foxy and earlier
 sudo rosdep update --include-eol-distros # for Foxy and earlier
 rosdep install -i --from-path src --rosdistro $ROS_DISTRO --skip-keys=librealsense2 -y
 
-sudo apt-get install ros-dashing-diagnostic-updater
+sudo apt-get install ros-dashing-diagnostic-updater -y
