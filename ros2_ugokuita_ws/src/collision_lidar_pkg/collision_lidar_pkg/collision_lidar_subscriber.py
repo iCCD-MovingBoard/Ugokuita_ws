@@ -20,7 +20,7 @@ class ControllerSubscriber(Node):
         value = msg.ranges[252]
         if value == 0.0: return
         if value > 1: return
-        self.get_logger().info('I heard: "%s"' % value)
+        self.get_logger().warn('I heard: "%s"' % value)
 
 def main(args=None):
     try:
