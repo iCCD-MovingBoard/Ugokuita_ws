@@ -16,11 +16,15 @@ class ControllerSubscriber(Node):
         self.subscription = self.create_subscription(LaserScan, 'scan', self.listener_callback, qos_profile)
         self.subscription  # prevent unused variable warning
 
+        self.publisher = self.create_publisher(String, 'motor_topic', 10)
+
+
     def listener_callback(self, msg):
         value = msg.ranges[252]
         if value == 0.0: return
         if value > 1: return
         self.get_logger().warn('I heard: "%s"' % value)
+        self.publisher.publish(String(data='#stop'))
 
 def main(args=None):
     try:

@@ -22,6 +22,7 @@ setup(
     entry_points={
         'console_scripts': [
             'collision_lidar_subscriber = collision_lidar_pkg.collision_lidar_subscriber:main',
+            'collision_lidar_publisher = collision_lidar_pkg.collision_lidar_subscriber:main'
         ],
     },
 )
