@@ -14,12 +14,12 @@ class MotorSubscriber(Node):
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg.data)
     controller_inputs: dict = str_converter.to_dict(msg.data)
-    norm = int(controller_inputs['RT']) -  int(controller_inputs['LT'])/32767
     axis_x = int(controller_inputs['L_Axis_x'])
-    right = 32767 - 2*(axis_x if axis_x >= 0 else 0)
-    left  = 32767 + 2*(axis_x if axis_x <  0 else 0)
-    uart.send_to_motordriver( right*norm,
-                              left*norm,
+    axis_y = int(controller_inputs['L_Axis_y'])
+    right = -axis_x - axis_y
+    left  =  axis_x - axis_y
+    uart.send_to_motordriver( right,
+                              left,
                               controller_inputs['X'])
 
 def main(args=None):
