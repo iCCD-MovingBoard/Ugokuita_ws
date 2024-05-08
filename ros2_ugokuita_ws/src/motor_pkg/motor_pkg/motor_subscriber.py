@@ -10,9 +10,18 @@ class MotorSubscriber(Node):
     super().__init__('motor_subscriber')
     self.subscription = self.create_subscription(String, 'motor_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
+    self.canMove = True
 
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg.data)
+    if msg.data == '#stop':
+      uart.send_to_motordriver(0, 0, 0)
+      self.canMove = False
+      return
+    if msg.data == '#start':
+      self.canMove = True
+      return
+    if self.canMove == False: return
     controller_inputs: dict = str_converter.to_dict(msg.data)
     axis_x = int(controller_inputs['L_Axis_x'])
     axis_y = int(controller_inputs['L_Axis_y'])
