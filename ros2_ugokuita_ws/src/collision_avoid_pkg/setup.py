@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'realsense_subscriver = collision_avoid_pkg.subscriver:main',
         ],
     },
 )

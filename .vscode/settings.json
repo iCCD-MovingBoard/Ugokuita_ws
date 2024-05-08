@@ -1,3 +1,4 @@
 {
-  "ros.distro": "dashing"
+  "ros.distro": "dashing",
+  "python.analysis.typeCheckingMode": "basic"
 }
