@@ -20,10 +20,10 @@ class ControllerSubscriber(Node):
 
 
     def listener_callback(self, msg):
-        half_degrees = 60 # degrees
+        half_degrees = 50 # degrees
         half_range = 502/2 * half_degrees / 360
-        collision_distance_threshold = 0.5
-        for i in range(250 - half_range, 250 + half_range):
+        collision_distance_threshold = 1.5
+        for i in range(251 - half_range, 251 + half_range):
             value = msg.ranges[i]
             if value == 0.0: continue
             if value < collision_distance_threshold:
