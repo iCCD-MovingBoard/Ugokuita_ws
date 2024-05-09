@@ -22,7 +22,7 @@ class ControllerSubscriber(Node):
     def listener_callback(self, msg):
         value = msg.ranges[252]
         if value == 0.0: return
-        if value > 1:
+        if value > 0.75:
             self.publisher.publish(String(data='#start'))
             return
         self.get_logger().warn('I heard: "%s"' % value)

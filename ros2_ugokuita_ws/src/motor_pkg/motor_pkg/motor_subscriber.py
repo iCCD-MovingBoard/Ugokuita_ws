@@ -21,12 +21,14 @@ class MotorSubscriber(Node):
     if msg.data == '#start':
       self.canMove = True
       return
-    if self.canMove == False: return
     controller_inputs: dict = str_converter.to_dict(msg.data)
     axis_x = int(controller_inputs['L_Axis_x'])
     axis_y = int(controller_inputs['L_Axis_y'])
     right = -axis_x - axis_y
     left  =  axis_x - axis_y
+    if self.canMove == False:
+      if right > 0: right = 0
+      if left > 0: left = 0
     uart.send_to_motordriver( right,
                               left,
                               controller_inputs['X'])
