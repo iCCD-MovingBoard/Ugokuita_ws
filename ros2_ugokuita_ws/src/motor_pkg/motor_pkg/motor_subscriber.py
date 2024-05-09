@@ -16,7 +16,7 @@ class MotorSubscriber(Node):
     self.get_logger().info('I heard: "%s"' % msg.data)
     if msg.data == '#stop':
       self.get_logger().warn('STOP')
-      uart.send_to_motordriver(0, 0, 0)
+      uart.send_to_motordriver(0, 0, 0, 300)
       self.canMove = False
       return
     if msg.data == '#start':
@@ -33,7 +33,7 @@ class MotorSubscriber(Node):
       if left > 0: left = 0
     uart.send_to_motordriver( right,
                               left,
-                              controller_inputs['X'])
+                              controller_inputs['X'], -1)
 
 def main(args=None):
   try:

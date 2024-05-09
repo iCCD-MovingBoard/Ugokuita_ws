@@ -32,7 +32,7 @@ def scale_speed(speed):
     scaled_speed = speed * CONV_RATE
     return round(scaled_speed, 2)
 
-def send_to_motordriver(speed_r: int, speed_l:int, x_button:int):
+def send_to_motordriver(speed_r: int, speed_l:int, x_button:int, freq:int):
     scaled_speed_r = scale_speed(speed_r)
     scaled_speed_l = scale_speed(speed_l)
     threshold = UART_MAX_VALUE*0.9
@@ -46,6 +46,8 @@ def send_to_motordriver(speed_r: int, speed_l:int, x_button:int):
     uart_port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
     uart_port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
     uart_port.write(bytes(f'H{x_button}\n', encoding='ascii'))
+    if freq > 0:
+        uart_port.write(bytes(f'B{freq}\n', encoding='ascii'))
 
 def main():
     try:
