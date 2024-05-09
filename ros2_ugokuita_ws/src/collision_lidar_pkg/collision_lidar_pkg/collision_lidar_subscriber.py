@@ -20,10 +20,13 @@ class ControllerSubscriber(Node):
 
 
     def listener_callback(self, msg):
-        for i in range(250 - 80, 250 + 80):
+        half_degrees = 60 # degrees
+        half_range = 502/2 * half_degrees / 360
+        collision_distance_threshold = 0.5
+        for i in range(250 - half_range, 250 + half_range):
             value = msg.ranges[i]
             if value == 0.0: continue
-            if value < 0.75:
+            if value < collision_distance_threshold:
                 self.publisher.publish(String(data='#stop'))
                 return
         self.publisher.publish(String(data='#start'))
