@@ -45,7 +45,7 @@ def send_to_motordriver(speed_r: int, speed_l:int, x_button:int, freq:int):
     
     uart_port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
     uart_port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
-    if x_button >= 0:
+    if x_button != -1:
         uart_port.write(bytes(f'H{x_button}\n', encoding='ascii'))
     if freq > 0:
         uart_port.write(bytes(f'B{freq}\n', encoding='ascii'))
