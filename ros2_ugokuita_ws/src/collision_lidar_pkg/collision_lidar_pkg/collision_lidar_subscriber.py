@@ -20,13 +20,14 @@ class ControllerSubscriber(Node):
 
 
     def listener_callback(self, msg):
-        value = msg.ranges[252]
-        if value == 0.0: return
-        if value > 0.75:
-            self.publisher.publish(String(data='#start'))
-            return
+        for i in range(200, 300):
+            value = msg.ranges[i]
+            if value == 0.0: continue
+            if value < 0.75:
+                self.publisher.publish(String(data='#stop'))
+                return
+        self.publisher.publish(String(data='#start'))
         self.get_logger().warn('I heard: "%s"' % value)
-        self.publisher.publish(String(data='#stop'))
 
 def main(args=None):
     try:
