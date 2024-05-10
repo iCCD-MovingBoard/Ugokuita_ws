@@ -15,12 +15,13 @@ class MotorSubscriber(Node):
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg.data)
     if msg.data == '#stop':
-      self.get_logger().warn('STOP')
-      uart.send_to_motordriver(0, 0, -1, 300)
+      if self.canMove == True:
+        self.get_logger().warn('STOP')
       self.canMove = False
-      return
+    
     if msg.data == '#start':
-      self.get_logger().warn('START')
+      if self.canMove == False:
+        self.get_logger().warn('START')
       self.canMove = True
     
     controller_inputs: dict = str_converter.to_dict(msg.data)
