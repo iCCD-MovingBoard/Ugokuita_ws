@@ -20,11 +20,13 @@ class MotorSubscriber(Node):
       if self.canMove == True:
         self.get_logger().warn('STOP')
       self.canMove = False
+      return # msg.dataにコントローラーの入力は含まれていないので、ここで処理を終了する
     
     if msg.data == '#start':
       if self.canMove == False:
         self.get_logger().warn('START')
       self.canMove = True
+      return # msg.dataにコントローラーの入力は含まれていないので、ここで処理を終了する
     
     controller_inputs: dict = str_converter.to_dict(msg.data)
     
