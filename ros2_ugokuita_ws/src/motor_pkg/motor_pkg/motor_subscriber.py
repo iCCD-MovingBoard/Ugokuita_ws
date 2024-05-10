@@ -22,16 +22,28 @@ class MotorSubscriber(Node):
     if msg.data == '#start':
       self.get_logger().warn('START')
       self.canMove = True
-      return
+    
     controller_inputs: dict = str_converter.to_dict(msg.data)
+    
     axis_x = int(controller_inputs['L_Axis_x'])
     axis_y = int(controller_inputs['L_Axis_y'])
     right = -axis_x - axis_y
     left  =  axis_x - axis_y
+    
     if self.canMove == False:
       if right > 0: right = 0
       if left > 0: left = 0
+      uart.send_to_motordriver('B300')
+    
+    scaled_speed_r = uart.scale_speed(right)
+    scaled_speed_l = uart.scale_speed(left)
     adjusted_speed_r, adjusted_speed_l = uart.adjust_speed(scaled_speed_r, scaled_speed_l)
+    
+    uart.send_to_motordriver(f'R{adjusted_speed_r}')
+    uart.send_to_motordriver(f'L{adjusted_speed_l}')
+    uart.send_to_motordriver(f'H{controller_inputs["X"]}')
+    if controller_inputs["Y"] == 1:
+      uart.send_to_motordriver('B300')
 
 def main(args=None):
   try:

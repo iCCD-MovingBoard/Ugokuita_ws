@@ -43,6 +43,9 @@ def adjust_speed(speed_r, speed_l):
         speed_l = -UART_MAX_VALUE
     return speed_r, speed_l
 
+def send_to_motordriver(send_data: str):
+    uart_port.write(bytes(f'{send_data}\n', encoding='ascii'))
+
 def main():
     try:
         while True:
