@@ -31,9 +31,7 @@ class MotorSubscriber(Node):
     if self.canMove == False:
       if right > 0: right = 0
       if left > 0: left = 0
-    uart.send_to_motordriver( right,
-                              left,
-                              controller_inputs['X'], -1)
+    adjusted_speed_r, adjusted_speed_l = uart.adjust_speed(scaled_speed_r, scaled_speed_l)
 
 def main(args=None):
   try:

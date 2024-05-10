@@ -32,23 +32,16 @@ def scale_speed(speed):
     scaled_speed = speed * CONV_RATE
     return round(scaled_speed, 2)
 
-def send_to_motordriver(speed_r: int, speed_l:int, x_button:int, freq:int):
-    scaled_speed_r = scale_speed(speed_r)
-    scaled_speed_l = scale_speed(speed_l)
+# 左右の速度が両方とも一定値以上の場合はどちらも最大値に変換して直進性を上げる関数
+def adjust_speed(speed_r, speed_l):
     threshold = UART_MAX_VALUE*0.9
-    if scaled_speed_r > threshold and scaled_speed_l > threshold:
-        scaled_speed_r = UART_MAX_VALUE
-        scaled_speed_l = UART_MAX_VALUE
-    if scaled_speed_r < -threshold and scaled_speed_l < -threshold:
-        scaled_speed_r = -UART_MAX_VALUE
-        scaled_speed_l = -UART_MAX_VALUE
-    
-    uart_port.write(bytes(f'R{float(scaled_speed_r)}\n', encoding='ascii'))
-    uart_port.write(bytes(f'L{float(scaled_speed_l)}\n', encoding='ascii'))
-    if x_button != -1:
-        uart_port.write(bytes(f'H{x_button}\n', encoding='ascii'))
-    if freq > 0:
-        uart_port.write(bytes(f'B{freq}\n', encoding='ascii'))
+    if speed_r > threshold and speed_l > threshold:
+        speed_r = UART_MAX_VALUE
+        speed_l = UART_MAX_VALUE
+    if speed_r < -threshold and speed_l < -threshold:
+        speed_r = -UART_MAX_VALUE
+        speed_l = -UART_MAX_VALUE
+    return speed_r, speed_l
 
 def main():
     try:
