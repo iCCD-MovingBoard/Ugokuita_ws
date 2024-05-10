@@ -11,6 +11,8 @@ class MotorSubscriber(Node):
     self.subscription = self.create_subscription(String, 'motor_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
     self.canMove = True
+    self.isLightOn = False
+    self.beforeXinput = 0
 
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg.data)
@@ -42,7 +44,12 @@ class MotorSubscriber(Node):
     
     uart.send_to_motordriver(f'R{adjusted_speed_r}')
     uart.send_to_motordriver(f'L{adjusted_speed_l}')
-    uart.send_to_motordriver(f'H{controller_inputs["X"]}')
+
+    currentXinput = controller_inputs["X"]
+    if currentXinput == 1 and self.beforeXinput == 0:
+      self.isLightOn = not self.isLightOn
+    uart.send_to_motordriver(f'H{int(self.isLightOn)}')
+    
     if controller_inputs["Y"] == 1:
       uart.send_to_motordriver('B300')
 
