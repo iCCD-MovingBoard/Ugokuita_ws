@@ -1,0 +1,3 @@
+# 障害物検知
+
+RealsenseやLiDARから取得したPointCloudの情報を用いて前方に障害物がある際にモーターの操作を打ち切るためのPackageです。
