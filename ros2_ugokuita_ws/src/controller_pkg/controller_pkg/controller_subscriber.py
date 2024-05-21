@@ -6,7 +6,7 @@ from std_msgs.msg import String
 class ControllerSubscriber(Node):
   def __init__(self):
     super().__init__('controller_subscriber')
-    self.subscription = self.create_subscription(String, 'motor_topic', self.listener_callback, 10)
+    self.subscription = self.create_subscription(String, 'serial_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
 
   def listener_callback(self, msg):

@@ -17,13 +17,13 @@ from launch.actions import LogInfo
 import lifecycle_msgs.msg
 import os
 
-def controller_motor_nodes():
+def controller_serial_nodes():
   controller_node = launch_ros.actions.Node(package='controller_pkg', node_executable='controller_publisher')
-  motor_node      = launch_ros.actions.Node(package='motor_pkg',      node_executable='motor_subscriber'
+  serial_node      = launch_ros.actions.Node(package='serial_pkg',    node_executable='serial_subscriber'
                                             # ,output='screen'
                                             )
   collision_lidar_node = launch_ros.actions.Node(package='collision_lidar_pkg', node_executable='collision_lidar_subscriber', output='screen')
-  return controller_node, motor_node, collision_lidar_node
+  return controller_node, serial_node, collision_lidar_node
 
 def lidar_nodes():
   share_dir = get_package_share_directory('ydlidar_ros2_driver')
@@ -51,7 +51,7 @@ def lidar_nodes():
   return params_declare, driver_node, tf2_node
 
 def generate_launch_description():
-  controller_node, motor_node, collision_lidar_node = controller_motor_nodes()
+  controller_node, serial_node, collision_lidar_node = controller_serial_nodes()
   params_declare, driver_node, tf2_node = lidar_nodes()
   
   return LaunchDescription([
@@ -60,7 +60,7 @@ def generate_launch_description():
     tf2_node,
 
     controller_node,
-    motor_node,
+    serial_node,
     collision_lidar_node,
   ])
   

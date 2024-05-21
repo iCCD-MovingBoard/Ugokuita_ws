@@ -16,7 +16,7 @@ class ControllerSubscriber(Node):
         self.subscription = self.create_subscription(LaserScan, 'scan', self.listener_callback, qos_profile)
         self.subscription  # prevent unused variable warning
 
-        self.publisher = self.create_publisher(String, 'motor_topic', 10)
+        self.publisher = self.create_publisher(String, 'serial_topic', 10)
 
 
     def listener_callback(self, msg):
