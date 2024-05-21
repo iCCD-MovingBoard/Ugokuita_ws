@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
-package_name = 'motor_pkg'
-submodules = 'motor_pkg/lib'
+package_name = 'serial_pkg'
+submodules = 'serial_pkg/lib'
 
 setup(
     name=package_name,
@@ -21,7 +21,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'motor_subscriber = motor_pkg.motor_subscriber:main',
+            'serial_subscriber = serial_pkg.serial_subscriber:main',
         ],
     },
 )

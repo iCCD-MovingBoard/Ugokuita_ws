@@ -5,10 +5,10 @@ from std_msgs.msg import String
 from .lib import str_converter
 from .lib import uart
 
-class MotorSubscriber(Node):
+class SerialSubscriber(Node):
   def __init__(self):
-    super().__init__('motor_subscriber')
-    self.subscription = self.create_subscription(String, 'motor_topic', self.listener_callback, 10)
+    super().__init__('serial_subscriber')
+    self.subscription = self.create_subscription(String, 'serial_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
     self.canMove = True
     self.isLightOn = False
