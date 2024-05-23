@@ -6,7 +6,7 @@ submodules = 'serial_pkg/lib'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name, submodules],
+    packages=[package_name, submodules, 'common'],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
