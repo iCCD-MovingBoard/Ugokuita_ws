@@ -2,22 +2,42 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from .lib.controller import Joycon
+from ...common.type_difinition import RequestCommand
+from ...common.type_difinition import CONTROLLER_ID
+from lib import str_converter
+
 class ControllerPublisher(Node):
   
   def __init__(self):
     super().__init__('controller_publisher')
-    self.publisher_ = self.create_publisher(String, 'serial_topic', 10)
+    self.publisher_ = self.create_publisher(RequestCommand, 'serial_topic', 10)
     timer_period = 0.0001  # seconds
     self.timer = self.create_timer(timer_period, self.timer_callback)
     self.i = 0
     self.joycon = Joycon("/dev/input/js0")
+    self.beforeXinput = 0
+    self.isLightOn = False
 
   def timer_callback(self):
-    msg = String()
     controller_data: str = self.joycon.get()
-    msg.data = '%s' % controller_data
+
+    axis_x = int(controller_data['L_Axis_x'])
+    axis_y = int(controller_data['L_Axis_y'])
+    right = str_converter.scale_speed(-axis_x - axis_y)
+    left  = str_converter.scale_speed( axis_x - axis_y)
+    right, left = str_converter.adjust_speed(right, left)
+    
+    beforeXinput = currentXinput
+    currentXinput = controller_data["X"]
+    if currentXinput == 1 and beforeXinput == 0:
+      self.isLightOn = not self.isLightOn
+    
+    if controller_data["Y"] == 1:
+      buzzer_furequency = 300
+
+    msg = RequestCommand(CONTROLLER_ID, right, left, self.isLightOn, buzzer_furequency)
     self.publisher_.publish(msg)
-    self.get_logger().info('Publishing: "%s"' % msg.data)
+    self.get_logger().info('Publishing: "%s"' % str(msg))
     self.i += 1
 
 def main(args=None):
