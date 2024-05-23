@@ -11,19 +11,15 @@ class SerialSubscriber(Node):
     super().__init__('serial_subscriber')
     self.subscription = self.create_subscription(SendCommand, 'serial_send_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
-    self.publisher = self.create_publisher(RecieveCommand, 'serial_recieve_topic', 10)
+    self.publisher = self.create_publisher(RecieveCommand, 'serial_receive_topic', 10)
 
   def listener_callback(self, msg):
-    self.get_logger().info('I heard: "%s"' % msg.data)
+    self.get_logger().info('I heard: "%s"' % msg)
     
-    right = msg.r
-    if right: uart.send_to_motordriver(f'R{right}')
-    left = msg.l
-    if left: uart.send_to_motordriver(f'L{left}')
-    h = msg.h
-    if h: uart.send_to_motordriver(f'H{h}')
-    b = msg.b
-    if b: uart.send_to_motordriver(f'B{b}')
+    if msg.r: uart.send_to_motordriver(f'R{msg.r}')
+    if msg.l: uart.send_to_motordriver(f'L{msg.l}')
+    if msg.h: uart.send_to_motordriver(f'H{msg.h}')
+    if msg.b: uart.send_to_motordriver(f'B{msg.b}')
 
 def main(args=None):
   try:
