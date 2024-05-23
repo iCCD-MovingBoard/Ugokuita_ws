@@ -7,7 +7,7 @@ from ...common.type_difinition import RequestCommand
 class ControllerSubscriber(Node):
   def __init__(self):
     super().__init__('controller_subscriber')
-    self.subscription = self.create_subscription(RequestCommand, 'serial_topic', self.listener_callback, 10)
+    self.subscription = self.create_subscription(RequestCommand, 'request_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
 
   def listener_callback(self, msg):
