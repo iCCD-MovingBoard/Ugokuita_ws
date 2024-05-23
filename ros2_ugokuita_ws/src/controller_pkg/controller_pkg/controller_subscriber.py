@@ -2,7 +2,7 @@ import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import String
-from ...common.type_difinition import RequestCommand
+from common.type_difinition import RequestCommand
 
 class ControllerSubscriber(Node):
   def __init__(self):
