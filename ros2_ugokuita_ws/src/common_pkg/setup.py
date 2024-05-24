@@ -6,7 +6,7 @@ package_name = 'common'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name]#, submodules],
+    packages=[package_name],#, submodules],
     py_modules=['lib.type_difinition'],
     install_requires=['setuptools'],
     zip_safe=True,
