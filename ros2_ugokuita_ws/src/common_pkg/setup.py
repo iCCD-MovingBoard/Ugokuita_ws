@@ -7,7 +7,7 @@ setup(
     name=package_name,
     version='0.0.0',
     packages=[package_name],#, submodules],
-    py_modules=['lib.type_difinition'],
+    py_modules=['common_pkg.common.lib.type_difinition'],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='canada',
