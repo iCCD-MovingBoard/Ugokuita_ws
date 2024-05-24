@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'common'
+package_name = 'common_pkg'
 # submodules = 'common/lib'
 
 setup(
