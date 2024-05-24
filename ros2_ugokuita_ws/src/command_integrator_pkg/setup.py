@@ -6,13 +6,13 @@ submodules = 'command_integrator_pkg/lib'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name, submodules, 'common'],
+    packages=[package_name, submodules],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'common'],
     zip_safe=True,
     maintainer='canada',
     maintainer_email='acavalkyrie@gmail.com',

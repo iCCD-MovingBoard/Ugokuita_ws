@@ -4,7 +4,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from .lib import str_converter
 from .lib import uart
-from common.type_difinition import SendCommand, RecieveCommand
+from common.lib.type_difinition import SendCommand, RecieveCommand
 
 class SerialSubscriber(Node):
   def __init__(self):

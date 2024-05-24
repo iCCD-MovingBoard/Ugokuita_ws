@@ -2,8 +2,8 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from .lib.controller import Joycon
-from common.type_difinition import RequestCommand
-from common.type_difinition import CONTROLLER_ID
+from common.lib.type_difinition import RequestCommand
+from common.lib.type_difinition import CONTROLLER_ID
 from lib import str_converter
 
 class ControllerPublisher(Node):
