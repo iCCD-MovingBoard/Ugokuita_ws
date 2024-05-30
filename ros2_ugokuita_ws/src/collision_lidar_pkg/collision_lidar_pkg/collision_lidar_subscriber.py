@@ -4,8 +4,8 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, QoSReliabilityPolicy, QoSProfile
 from sensor_msgs.msg import LaserScan
-from common_pkg.common_pkg.lib.type_difinition import RequestCommand
-from common_pkg.common_pkg.lib.type_difinition import LIDAR_ID
+from custom_msg.msg import RequestCommand
+LIDAR_ID = 1
 
 class ControllerSubscriber(Node):
     def __init__(self):
