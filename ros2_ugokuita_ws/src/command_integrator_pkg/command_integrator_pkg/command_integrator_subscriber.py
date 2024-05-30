@@ -2,8 +2,8 @@ import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import String
-from common_pkg.common.lib.type_difinition import RequestCommand, SendCommand
-from common_pkg.common.lib.type_difinition import LIDAR_ID
+from common_pkg.common_pkg.lib.type_difinition import RequestCommand, SendCommand
+from common_pkg.common_pkg.lib.type_difinition import LIDAR_ID
 
 
 class CommandIntegrator(Node):
