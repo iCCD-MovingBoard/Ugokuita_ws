@@ -4,7 +4,7 @@ from std_msgs.msg import String
 from .lib.controller import Joycon
 from custom_msg.msg import RequestCommand
 CONTROLLER_ID = 2
-from lib import str_converter
+from .lib import str_converter
 
 class ControllerPublisher(Node):
   
