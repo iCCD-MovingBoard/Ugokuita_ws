@@ -3,7 +3,7 @@ for option in "$@"
 do
   if [ "${option}" = "build" ]; then
     # echo "build"
-    colcon build --symlink --packages-select controller_pkg serial_pkg debug_launch ydlidar_ros2_driver collision_lidar_pkg command_integrator_pkg common_pkg
+    colcon build --symlink --packages-select controller_pkg serial_pkg debug_launch ydlidar_ros2_driver collision_lidar_pkg command_integrator_pkg custom_msg
   fi
 done
 
