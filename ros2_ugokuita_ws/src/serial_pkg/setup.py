@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 package_name = 'serial_pkg'
-submodules = 'node/lib'
+submodules = 'serial_pkg/lib'
 
 setup(
     name=package_name,
@@ -21,7 +21,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'serial_subscriber = node.serial_subscriber:main',
+            'serial_subscriber = serial_pkg.serial_subscriber:main',
         ],
     },
 )

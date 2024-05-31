@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 package_name = 'controller_pkg'
-submodules = 'node/lib'
+submodules = 'controller_pkg/lib'
 
 setup(
     name=package_name,
@@ -21,8 +21,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'controller_publisher = node.controller_publisher:main',
-            'controller_subscriber = node.controller_subscriber:main',
+            'controller_publisher = controller_pkg.controller_publisher:main',
+            'controller_subscriber = controller_pkg.controller_subscriber:main',
         ],
     },
 )
