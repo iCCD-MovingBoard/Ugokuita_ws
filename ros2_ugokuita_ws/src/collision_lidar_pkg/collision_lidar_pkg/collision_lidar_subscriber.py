@@ -33,8 +33,8 @@ class ControllerSubscriber(Node):
                 request.id = LIDAR_ID
                 request.r = 0
                 request.l = 0
-                request.h = None
-                request.b = None
+                request.h = -1
+                request.b = -1
                 self.publisher.publish(request)
                 return
         # self.publisher.publish(String(data='#start'))

@@ -17,8 +17,8 @@ class SerialSubscriber(Node):
     
     if msg.r: uart.send_to_motordriver(f'R{msg.r}')
     if msg.l: uart.send_to_motordriver(f'L{msg.l}')
-    if msg.h: uart.send_to_motordriver(f'H{msg.h}')
-    if msg.b: uart.send_to_motordriver(f'B{msg.b}')
+    if msg.h != -1: uart.send_to_motordriver(f'H{msg.h}')
+    if msg.b != -1: uart.send_to_motordriver(f'B{msg.b}')
 
 def main(args=None):
   try:
