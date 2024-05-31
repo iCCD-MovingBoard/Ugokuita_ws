@@ -4,7 +4,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, QoSReliabilityPolicy, QoSProfile
 from sensor_msgs.msg import LaserScan
-from custom_msg.msg import RequestCommand
+# from custom_msg.msg import RequestCommand
 LIDAR_ID = 1
 
 class ControllerSubscriber(Node):
@@ -18,7 +18,7 @@ class ControllerSubscriber(Node):
         self.subscription = self.create_subscription(LaserScan, 'scan', self.listener_callback, qos_profile)
         self.subscription  # prevent unused variable warning
 
-        self.publisher = self.create_publisher(RequestCommand, 'request_topic', 10)
+        self.publisher = self.create_publisher(dict , 'request_topic', 10)
 
 
     def listener_callback(self, msg):
@@ -29,12 +29,13 @@ class ControllerSubscriber(Node):
             value = msg.ranges[i]
             if value == 0.0: continue
             if value < collision_distance_threshold:
-                request: RequestCommand = RequestCommand()
-                request.id = LIDAR_ID
-                request.r = 0
-                request.l = 0
-                request.h = -1
-                request.b = -1
+                request = {
+                    "id": LIDAR_ID,
+                    "r": 0,
+                    "l": 0,
+                    "h": -1,
+                    "b": -1
+                }
                 self.publisher.publish(request)
                 return
         # self.publisher.publish(String(data='#start'))

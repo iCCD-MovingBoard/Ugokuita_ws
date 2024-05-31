@@ -8,16 +8,17 @@ LIDAR_ID = 1
 class CommandIntegrator(Node):
     def __init__(self):
         super().__init__('command_integrator_subscriber')
-        self.subscription = self.create_subscription(RequestCommand, 'request_topic', 10)
+        self.subscription = self.create_subscription(dict, 'request_topic', 10)
         self.subscription  # prevent unused variable warning
-        self.publisher = self.create_publisher(SendCommand, 'serial_send_topic', 10)
+        self.publisher = self.create_publisher(dict, 'serial_send_topic', 10)
 
     def listener_callback(self, msg):
-        send = SendCommand()
-        send.r = msg.r
-        send.l = msg.l
-        send.h = msg.h
-        send.b = msg.b
+        send = {
+            "r": msg["r"],
+            "l": msg["l"],
+            "h": msg["h"],
+            "b": msg["b"]
+        }
         self.publisher.publish(send)
         
 

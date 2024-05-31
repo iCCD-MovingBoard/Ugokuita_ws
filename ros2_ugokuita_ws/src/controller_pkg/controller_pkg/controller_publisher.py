@@ -10,7 +10,7 @@ class ControllerPublisher(Node):
   
   def __init__(self):
     super().__init__('controller_publisher')
-    self.publisher_ = self.create_publisher(RequestCommand, 'serial_topic', 10)
+    self.publisher_ = self.create_publisher(dict, 'serial_topic', 10)
     timer_period = 0.0001  # seconds
     self.timer = self.create_timer(timer_period, self.timer_callback)
     self.i = 0
@@ -35,12 +35,13 @@ class ControllerPublisher(Node):
     if controller_data["Y"] == 1:
       buzzer_furequency = 300
 
-    msg = RequestCommand()
-    msg.id = CONTROLLER_ID
-    msg.r = right
-    msg.l = left
-    msg.h = self.isLightOn
-    msg.b = buzzer_furequency
+    msg = {
+      "id": CONTROLLER_ID,
+      "r": right,
+      "l": left,
+      "h": self.isLightOn,
+      "b": buzzer_furequency
+    }
     self.publisher_.publish(msg)
     self.get_logger().info('Publishing: "%s"' % str(msg))
     self.i += 1
