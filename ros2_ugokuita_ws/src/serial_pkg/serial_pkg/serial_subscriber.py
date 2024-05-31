@@ -2,7 +2,6 @@ import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import String
-from .lib import str_converter
 from .lib import uart
 from custom_msg.msg import SendCommand, RecieveCommand
 
