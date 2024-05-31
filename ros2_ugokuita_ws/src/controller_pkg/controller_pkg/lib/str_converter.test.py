@@ -1,4 +1,4 @@
-import ros2_ugokuita_ws.src.serial_pkg.node.lib.str_converter as str_converter
+import ros2_ugokuita_ws.src.serial_pkg.serial_pkg.lib.str_converter as str_converter
 
 def test_to_speeds(str, correct_speeds):
     speeds = str_converter.to_speeds(str)
