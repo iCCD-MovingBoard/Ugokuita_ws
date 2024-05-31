@@ -31,11 +31,16 @@ class ControllerPublisher(Node):
     currentXinput = controller_data["X"]
     if currentXinput == 1 and beforeXinput == 0:
       self.isLightOn = not self.isLightOn
-    
+    buzzer_frequency = -1
     if controller_data["Y"] == 1:
       buzzer_furequency = 300
 
-    msg = RequestCommand(CONTROLLER_ID, right, left, self.isLightOn, buzzer_furequency)
+    msg = RequestCommand()
+    msg.id = CONTROLLER_ID
+    msg.r = right
+    msg.l = left
+    msg.h = self.isLightOn
+    msg.b = buzzer_furequency
     self.publisher_.publish(msg)
     self.get_logger().info('Publishing: "%s"' % str(msg))
     self.i += 1
