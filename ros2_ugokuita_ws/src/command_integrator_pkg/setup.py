@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 package_name = 'command_integrator_pkg'
-submodules = 'command_integrator_pkg/lib'
+submodules = 'node/lib'
 
 setup(
     name=package_name,
@@ -21,8 +21,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'command_integrator_subscriber = command_integrator_pkg.command_integrator_subscriber:main',
-            'command_integrator_publisher = command_integrator_pkg.command_integrator_subscriber:main'
+            'command_integrator_subscriber = node.command_integrator_subscriber:main',
+            'command_integrator_publisher = node.command_integrator_subscriber:main'
         ],
     },
 )

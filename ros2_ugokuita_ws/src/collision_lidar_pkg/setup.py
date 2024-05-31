@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 package_name = 'collision_lidar_pkg'
-submodules = 'collision_lidar_pkg/lib'
+submodules = 'node/lib'
 
 setup(
     name=package_name,
@@ -21,8 +21,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'collision_lidar_subscriber = collision_lidar_pkg.collision_lidar_subscriber:main',
-            'collision_lidar_publisher = collision_lidar_pkg.collision_lidar_subscriber:main'
+            'collision_lidar_subscriber = node.collision_lidar_subscriber:main',
+            'collision_lidar_publisher = node.collision_lidar_subscriber:main'
         ],
     },
 )
