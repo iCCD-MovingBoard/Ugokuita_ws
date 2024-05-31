@@ -29,7 +29,13 @@ class ControllerSubscriber(Node):
             value = msg.ranges[i]
             if value == 0.0: continue
             if value < collision_distance_threshold:
-                self.publisher.publish(RequestCommand(LIDAR_ID, r=0, l=0, h=None, b=None))
+                request: RequestCommand = RequestCommand()
+                request.id = LIDAR_ID
+                request.r = 0
+                request.l = 0
+                request.h = None
+                request.b = None
+                self.publisher.publish(request)
                 return
         # self.publisher.publish(String(data='#start'))
         # self.get_logger().warn('I heard: "%s"' % value)
