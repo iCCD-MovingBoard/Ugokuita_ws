@@ -13,7 +13,12 @@ class CommandIntegrator(Node):
         self.publisher = self.create_publisher(SendCommand, 'serial_send_topic', 10)
 
     def listener_callback(self, msg):
-        self.publisher.publish(SendCommand(msg.r, msg.l, msg.h, msg.b))
+        send = SendCommand()
+        send.r = msg.r
+        send.l = msg.l
+        send.h = msg.h
+        send.b = msg.b
+        self.publisher.publish(send)
         
 
 def main(args=None):
