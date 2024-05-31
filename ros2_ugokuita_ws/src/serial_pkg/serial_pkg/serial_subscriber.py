@@ -8,17 +8,15 @@ from custom_msg.msg import SendCommand, RecieveCommand
 class SerialSubscriber(Node):
   def __init__(self):
     super().__init__('serial_subscriber')
-    self.subscription = self.create_subscription(dict, 'serial_send_topic', self.listener_callback, 10)
+    self.subscription = self.create_subscription(String, 'serial_send_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
-    self.publisher = self.create_publisher(dict, 'serial_receive_topic', 10)
+    self.publisher = self.create_publisher(String, 'serial_receive_topic', 10)
 
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg)
-    
-    if msg["r"]: uart.send_to_motordriver(f'R{msg["r"]}')
-    if msg["l"]: uart.send_to_motordriver(f'L{msg["l"]}')
-    if msg["h"] != -1: uart.send_to_motordriver(f'H{msg["h"]}')
-    if msg["b"] != -1: uart.send_to_motordriver(f'B{msg["b"]}')
+    commands = msg.data.split(',')
+    for command in commands:
+      self.send_command(command)
 
 def main(args=None):
   try:

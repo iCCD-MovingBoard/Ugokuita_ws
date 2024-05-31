@@ -18,8 +18,7 @@ class ControllerSubscriber(Node):
         self.subscription = self.create_subscription(LaserScan, 'scan', self.listener_callback, qos_profile)
         self.subscription  # prevent unused variable warning
 
-        self.publisher = self.create_publisher(dict , 'request_topic', 10)
-
+        self.publisher = self.create_publisher(String, 'request_topic', 10)
 
     def listener_callback(self, msg):
         half_degrees = 30 # degrees
@@ -29,13 +28,7 @@ class ControllerSubscriber(Node):
             value = msg.ranges[i]
             if value == 0.0: continue
             if value < collision_distance_threshold:
-                request = {
-                    "id": LIDAR_ID,
-                    "r": 0,
-                    "l": 0,
-                    "h": -1,
-                    "b": -1
-                }
+                request = f"ID{LIDAR_ID},R0,L0"
                 self.publisher.publish(request)
                 return
         # self.publisher.publish(String(data='#start'))

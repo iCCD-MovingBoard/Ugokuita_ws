@@ -7,10 +7,9 @@ CONTROLLER_ID = 2
 from .lib import str_converter
 
 class ControllerPublisher(Node):
-  
   def __init__(self):
     super().__init__('controller_publisher')
-    self.publisher_ = self.create_publisher(dict, 'serial_topic', 10)
+    self.publisher_ = self.create_publisher(String, 'serial_topic', 10)
     timer_period = 0.0001  # seconds
     self.timer = self.create_timer(timer_period, self.timer_callback)
     self.i = 0
@@ -26,22 +25,16 @@ class ControllerPublisher(Node):
     right = str_converter.scale_speed(-axis_x - axis_y)
     left  = str_converter.scale_speed( axis_x - axis_y)
     right, left = str_converter.adjust_speed(right, left)
+    msg = f"ID{CONTROLLER_ID},R{right},L{left},H{self.isLightOn}"
     
     beforeXinput = currentXinput
     currentXinput = controller_data["X"]
     if currentXinput == 1 and beforeXinput == 0:
       self.isLightOn = not self.isLightOn
-    buzzer_frequency = -1
     if controller_data["Y"] == 1:
       buzzer_furequency = 300
+      msg += f",B{buzzer_furequency}"
 
-    msg = {
-      "id": CONTROLLER_ID,
-      "r": right,
-      "l": left,
-      "h": self.isLightOn,
-      "b": buzzer_furequency
-    }
     self.publisher_.publish(msg)
     self.get_logger().info('Publishing: "%s"' % str(msg))
     self.i += 1
