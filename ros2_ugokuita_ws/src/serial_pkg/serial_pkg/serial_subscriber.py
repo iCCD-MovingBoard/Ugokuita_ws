@@ -15,7 +15,7 @@ class SerialSubscriber(Node):
     self.get_logger().info('I heard: "%s"' % msg)
     commands = msg.data.split(',')
     for command in commands:
-      self.send_command(command)
+      uart.send_command(command)
 
 def main(args=None):
   try:
