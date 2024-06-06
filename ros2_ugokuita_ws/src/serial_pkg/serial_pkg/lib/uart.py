@@ -19,14 +19,15 @@ uart_port = serial.Serial(jetson_port,
                             parity=PARITY,
                             bytesize=BYTESIZE)
 
-def send_to_motordriver(send_data: str):
+def send_command(send_data: str):
     uart_port.write(bytes(f'{send_data}\n', encoding='ascii'))
 
 def main():
     try:
         while True:
             for i in range(-1100, 1100, 10):
-                send_to_motordriver(uart_port, i, i)
+                send_command(f'R{i}')
+                send_command(f'L{i}')
                 receive_data = uart_port.readline()
                 print(receive_data)
                 receive_data = uart_port.readline()

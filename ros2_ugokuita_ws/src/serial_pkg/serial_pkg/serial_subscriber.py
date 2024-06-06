@@ -25,7 +25,11 @@ def main(args=None):
   except KeyboardInterrupt:
     pass
   finally:
-    uart.send_to_motordriver(0, 0, 0, 0)
+    uart.send_command(f'R0')
+    uart.send_command(f'L0')
+    uart.send_command(f'H0')
+    uart.send_command(f'B0')
+    
     serial_subscriber.destroy_node()
     uart.uart_port.close()
     rclpy.shutdown()
