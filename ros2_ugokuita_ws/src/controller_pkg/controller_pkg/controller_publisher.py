@@ -24,7 +24,7 @@ class ControllerPublisher(Node):
     right = str_converter.scale_speed(-axis_x - axis_y)
     left  = str_converter.scale_speed( axis_x - axis_y)
     right, left = str_converter.adjust_speed(right, left)
-    msg = String
+    msg = String()
     msg.data = f"ID{CONTROLLER_ID},R{right},L{left},H{self.isLightOn}"
     
     beforeXinput = currentXinput
