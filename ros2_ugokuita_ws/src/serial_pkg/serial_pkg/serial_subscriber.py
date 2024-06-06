@@ -3,7 +3,6 @@ from rclpy.node import Node
 
 from std_msgs.msg import String
 from .lib import uart
-from custom_msg.msg import SendCommand, RecieveCommand
 
 class SerialSubscriber(Node):
   def __init__(self):

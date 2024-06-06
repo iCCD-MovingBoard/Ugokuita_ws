@@ -2,7 +2,6 @@ import rclpy
 from rclpy.node import Node
 
 from std_msgs.msg import String
-from custom_msg.msg import RequestCommand, SendCommand
 LIDAR_ID = 1
 
 class CommandIntegrator(Node):
