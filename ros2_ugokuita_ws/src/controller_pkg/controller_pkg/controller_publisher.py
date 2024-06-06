@@ -17,7 +17,7 @@ class ControllerPublisher(Node):
     self.isLightOn = False
 
   def timer_callback(self):
-    controller_data: str = self.joycon.get()
+    controller_data: dict = self.joycon.get()
 
     axis_x = int(controller_data['L_Axis_x'])
     axis_y = int(controller_data['L_Axis_y'])

@@ -9,25 +9,7 @@ class Joycon:
 	def __init__(self, path):
 		self.gamepad = open(path, "rb")
 
-		# analog
-		self.l_axis_x = 0
-		self.l_axis_y = 0
-		self.lt = 0
-		self.r_axis_x = 0
-		self.r_axis_y = 0
-		self.rt = 0
-		self.cross_x = 0
-		self.cross_y = 0
-
-		# digital
-		self.a_button = 0
-		self.b_button = 0
-		self.x_button = 0
-		self.y_button = 0
-		self.lb_button = 0
-		self.rb_button = 0
-		self.back_button = 0
-		self.start_button = 0
+		self.state = {}
 
 		self.t = threading.Thread(target = self.loop)
 		self.t.start()
@@ -38,48 +20,37 @@ class Joycon:
 			_, value, digital_analog, index = struct.unpack("<Ihbb", input)
 			if(digital_analog == 2):
 				if(index == analog_button['L_Axis_x']):
-					self.l_axis_x = value
+					self.state['L_Axis_x'] = value
 				elif(index == analog_button['L_Axis_y']):
-					self.l_axis_y = value
+					self.state['L_Axis_y'] = value
 				elif(index == analog_button['LT']):
-					self.lt = value
+					self.state['LT'] = value
 				elif(index == analog_button['R_Axis_x']):
-					self.r_axis_x = value
+					self.state['R_Axis_x'] = value
 				elif(index == analog_button['R_Axis_y']):
-					self.r_axis_y = value
-				elif(index == analog_button['RT']):
-					self.rt = value
-				elif(index == analog_button['Cross_x']):
-					self.cross_x = value
-				elif(index == analog_button['Cross_y']):
-					self.cross_y = value
-			else:
+					self.state['R_Axis_y'] = value
+			elif(digital_analog == 1):
 				if(index == digital_button['A']):
-					self.a_button = value
+					self.state['A'] = value
 				elif(index == digital_button['B']):
-					self.b_button = value
+					self.state['B'] = value
 				elif(index == digital_button['X']):
-					self.x_button = value
+					self.state['X'] = value
 				elif(index == digital_button['Y']):
-					self.y_button = value
+					self.state['Y'] = value
 				elif(index == digital_button['LB']):
-					self.lb_button = value
+					self.state['LB'] = value
 				elif(index == digital_button['RB']):
-					self.rb_button = value
+					self.state['RB'] = value
 				elif(index == digital_button['Back']):
-					self.back_button = value
+					self.state['Back'] = value
 				elif(index == digital_button['Start']):
-					self.start_button = value
+					self.state['Start'] = value
 
-	def get(self):
+	def get(self) -> dict:
 		# left = self.clamp(self.l_axis_x - self.l_axis_y)
 		# right = self.clamp(-self.l_axis_x - self.l_axis_y)
-		state = ''
-		for key in digital_button:
-			state += key + ':' + str(getattr(self, key.lower() + '_button')) + ','
-		for key in analog_button:
-			state += key + ':' + str(getattr(self, key.lower())) + ','
-		return state[:-1]
+		return self.state
 
 	# def clamp(self, n):
 	# 	minimum_value = -32768
