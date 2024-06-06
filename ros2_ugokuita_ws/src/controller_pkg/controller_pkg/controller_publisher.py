@@ -24,7 +24,8 @@ class ControllerPublisher(Node):
     right = str_converter.scale_speed(-axis_x - axis_y)
     left  = str_converter.scale_speed( axis_x - axis_y)
     right, left = str_converter.adjust_speed(right, left)
-    msg = f"ID{CONTROLLER_ID},R{right},L{left},H{self.isLightOn}"
+    msg = String
+    msg.data = f"ID{CONTROLLER_ID},R{right},L{left},H{self.isLightOn}"
     
     beforeXinput = currentXinput
     currentXinput = controller_data["X"]
@@ -32,7 +33,7 @@ class ControllerPublisher(Node):
       self.isLightOn = not self.isLightOn
     if controller_data["Y"] == 1:
       buzzer_furequency = 300
-      msg += f",B{buzzer_furequency}"
+      msg.data += f",B{buzzer_furequency}"
 
     self.publisher_.publish(msg)
     self.get_logger().info('Publishing: "%s"' % str(msg))

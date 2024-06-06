@@ -9,7 +9,7 @@ class SerialSubscriber(Node):
     super().__init__('serial_subscriber')
     self.subscription = self.create_subscription(String, 'serial_send_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
-    self.publisher = self.create_publisher(String, 'serial_receive_topic', 10)
+    # self.publisher = self.create_publisher(String, 'serial_receive_topic', 10)
 
   def listener_callback(self, msg):
     self.get_logger().info('I heard: "%s"' % msg)
