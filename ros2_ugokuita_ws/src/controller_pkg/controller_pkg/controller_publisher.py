@@ -2,14 +2,13 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from .lib.controller import Joycon
-from custom_msg.msg import RequestCommand
 CONTROLLER_ID = 2
 from .lib import str_converter
 
 class ControllerPublisher(Node):
   def __init__(self):
     super().__init__('controller_publisher')
-    self.publisher_ = self.create_publisher(String, 'serial_topic', 10)
+    self.publisher_ = self.create_publisher(String, 'request_topic', 10)
     timer_period = 0.0001  # seconds
     self.timer = self.create_timer(timer_period, self.timer_callback)
     self.i = 0
