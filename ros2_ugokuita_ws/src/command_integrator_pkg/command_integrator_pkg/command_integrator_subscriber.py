@@ -8,7 +8,7 @@ class CommandIntegrator(Node):
     def __init__(self):
         super().__init__('command_integrator_negotiator')
         self.subscription = self.create_subscription(String, 'request_topic', 10)
-        self.subscription  # prevent unused variable warning
+        # self.subscription  # prevent unused variable warning
         self.publisher = self.create_publisher(String, 'serial_send_topic', 10)
 
     def listener_callback(self, msg):
