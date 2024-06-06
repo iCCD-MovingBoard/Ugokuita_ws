@@ -19,8 +19,8 @@ class ControllerPublisher(Node):
   def timer_callback(self):
     controller_data: dict = self.joycon.get()
 
-    axis_x = int(controller_data['L_Axis_x'])
-    axis_y = int(controller_data['L_Axis_y'])
+    axis_x = controller_data['L_Axis_x']
+    axis_y = controller_data['L_Axis_y']
     right = str_converter.scale_speed(-axis_x - axis_y)
     left  = str_converter.scale_speed( axis_x - axis_y)
     right, left = str_converter.adjust_speed(right, left)
@@ -36,7 +36,7 @@ class ControllerPublisher(Node):
       msg.data += f",B{buzzer_furequency}"
 
     self.publisher_.publish(msg)
-    self.get_logger().info('Publishing: "%s"' % str(msg))
+    self.get_logger().warning('Publishing: "%s"' % str(msg))
     self.i += 1
 
 def main(args=None):
