@@ -10,18 +10,16 @@ class CommandIntegrator(Node):
         self.subscription = self.create_subscription(String, 'request_topic', 10)
         self.subscription  # prevent unused variable warning
         self.publisher = self.create_publisher(String, 'serial_send_topic', 10)
-        self.i = 0
 
     def listener_callback(self, msg):
         commands = msg.data.split(',')
         send = String()
-        for i, command in enumerate(commands):
-            if i == 0: continue
-            if i != 1: send.data += ','
+        for index, command in enumerate(commands):
+            if index == 0: continue
+            if index != 1: send.data += ','
             send.data += command
 
         self.publisher.publish(send)
-        self.i += 1
 
 def main(args=None):
     try:
