@@ -21,8 +21,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'command_integrator_subscriber = command_integrator_pkg.command_integrator_subscriber:main',
-            'command_integrator_publisher  = command_integrator_pkg.command_integrator_subscriber:main'
+            'subscriber = command_integrator_pkg.command_integrator_negotiator:main',
+            'publisher  = command_integrator_pkg.command_integrator_negotiator:main'
         ],
     },
 )
