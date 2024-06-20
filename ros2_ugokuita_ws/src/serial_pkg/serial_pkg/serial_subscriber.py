@@ -12,9 +12,10 @@ class SerialSubscriber(Node):
     # self.publisher = self.create_publisher(String, 'serial_receive_topic', 10)
 
   def listener_callback(self, msg):
-    self.get_logger().info('I heard: "%s"' % msg)
+    # self.get_logger().info('I heard: "%s"' % msg)
     commands = msg.data.split(',')
     for command in commands:
+      self.getlogger().info('Sending command: "%s"' % command)
       uart.send_command(command)
 
 def main(args=None):
