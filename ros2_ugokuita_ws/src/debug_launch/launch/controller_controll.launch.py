@@ -21,7 +21,7 @@ def controller_serial_nodes():
   controller_node = launch_ros.actions.Node(package='controller_pkg', node_executable='controller_publisher', output='screen')
   collision_lidar_node = launch_ros.actions.Node(package='collision_lidar_pkg', node_executable='collision_lidar_subscriber', output='screen')
   command_integrator_node = launch_ros.actions.Node(package='command_integrator_pkg', node_executable='command_integrator_negotiator', output='screen')
-  serial_node      = launch_ros.actions.Node(package='serial_pkg',    node_executable='serial_subscriber' ,output='screen')
+  serial_node = launch_ros.actions.Node(package='serial_pkg', node_executable='serial_subscriber' ,output='screen')
   return controller_node, collision_lidar_node, command_integrator_node, serial_node
 
 def lidar_nodes():
