@@ -19,12 +19,6 @@ class ControllerPublisher(Node):
 
   def timer_callback(self):
     controller_data: dict = self.joycon.state
-    msg = String()
-    msg.data = str('L_Axis_x' in controller_data)
-    self.publisher_.publish(msg)
-    self.i += 1
-    return
-
     axis_x = controller_data['L_Axis_x']
     axis_y = controller_data['L_Axis_y']
     right = str_converter.scale_speed(-axis_x - axis_y)
@@ -35,7 +29,7 @@ class ControllerPublisher(Node):
     
     self.beforeXinput = self.currentXinput
     self.currentXinput = controller_data["X"]
-    if currentXinput == 1 and beforeXinput == 0:
+    if self.currentXinput == 1 and self.beforeXinput == 0:
       self.isLightOn = not self.isLightOn
     if controller_data["Y"] == 1:
       buzzer_furequency = 300
