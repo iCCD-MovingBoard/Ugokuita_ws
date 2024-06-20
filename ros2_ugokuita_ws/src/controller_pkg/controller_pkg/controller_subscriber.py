@@ -1,16 +1,15 @@
 import rclpy
 from rclpy.node import Node
-
 from std_msgs.msg import String
 
 class ControllerSubscriber(Node):
   def __init__(self):
     super().__init__('controller_subscriber')
-    self.subscription = self.create_subscription(String, 'motor_topic', self.listener_callback, 10)
+    self.subscription = self.create_subscription(String, 'request_topic', self.listener_callback, 10)
     self.subscription  # prevent unused variable warning
 
   def listener_callback(self, msg):
-    self.get_logger().info('I heard: "%s"' % msg.data)
+    self.get_logger().info('I heard: "%s"' % str(msg))
 
 def main(args=None):
   try:

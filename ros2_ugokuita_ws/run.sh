@@ -3,7 +3,7 @@ for option in "$@"
 do
   if [ "${option}" = "build" ]; then
     # echo "build"
-    colcon build --symlink --packages-select controller_pkg motor_pkg  debug_launch ydlidar_ros2_driver
+    colcon build --symlink --packages-select controller_pkg serial_pkg debug_launch ydlidar_ros2_driver collision_lidar_pkg command_integrator_pkg
   fi
 done
 
@@ -11,6 +11,7 @@ done
 
 # echo "run"
 if [ $# -eq 0 ]; then
+    ./kill_ros2_nodes.sh
     ros2 launch debug_launch controller_controll.launch.py
     exit
 fi
