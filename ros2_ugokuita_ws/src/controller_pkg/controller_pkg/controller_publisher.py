@@ -36,7 +36,7 @@ class ControllerPublisher(Node):
       msg.data += f",B{buzzer_furequency}"
 
     self.publisher_.publish(msg)
-    self.get_logger().warning('Publishing: "%s"' % str(msg))
+    # self.get_logger().warning('Publishing: "%s"' % str(msg))
     self.i += 1
 
 def main(args=None):
