@@ -64,7 +64,7 @@ class Joycon:
 				elif(index == digital_button['Start']):
 					self.state['Start'] = value
 
-	def get(self) -> dict:
+	def get(self):
 		# left = self.clamp(self.l_axis_x - self.l_axis_y)
 		# right = self.clamp(-self.l_axis_x - self.l_axis_y)
 		return self.state

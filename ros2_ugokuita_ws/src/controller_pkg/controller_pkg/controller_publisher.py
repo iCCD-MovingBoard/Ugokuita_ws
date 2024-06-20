@@ -14,10 +14,16 @@ class ControllerPublisher(Node):
     self.i = 0
     self.joycon = Joycon("/dev/input/js0")
     self.beforeXinput = 0
+    self.currentXinput = 0
     self.isLightOn = False
 
   def timer_callback(self):
-    controller_data: dict = self.joycon.get()
+    controller_data: dict = self.joycon.state
+    msg = String()
+    msg.data = str('L_Axis_x' in controller_data)
+    self.publisher_.publish(msg)
+    self.i += 1
+    return
 
     axis_x = controller_data['L_Axis_x']
     axis_y = controller_data['L_Axis_y']
@@ -27,8 +33,8 @@ class ControllerPublisher(Node):
     msg = String()
     msg.data = f"ID{CONTROLLER_ID},R{right},L{left},H{self.isLightOn}"
     
-    beforeXinput = currentXinput
-    currentXinput = controller_data["X"]
+    self.beforeXinput = self.currentXinput
+    self.currentXinput = controller_data["X"]
     if currentXinput == 1 and beforeXinput == 0:
       self.isLightOn = not self.isLightOn
     if controller_data["Y"] == 1:
