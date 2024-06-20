@@ -1,8 +1,8 @@
 
 import ros2_ugokuita_ws.src.motor_pkg.serial_pkg.lib.uart as uart
-import ros2_ugokuita_ws.src.motor_pkg.serial_pkg.lib.str_converter as str_converter
+import str_converter
 import time
-import ros2_ugokuita_ws.src.controller_pkg.controller_pkg.lib.controller as controller
+import controller
 from logging import getLogger
 logger = getLogger(__name__)
 

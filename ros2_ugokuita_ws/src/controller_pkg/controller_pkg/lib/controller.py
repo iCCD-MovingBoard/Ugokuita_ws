@@ -10,6 +10,23 @@ class Joycon:
 		self.gamepad = open(path, "rb")
 
 		self.state = {}
+		# すべてのボタンの初期値を0に設定
+		self.state['A'] = 0
+		self.state['B'] = 0
+		self.state['X'] = 0
+		self.state['Y'] = 0
+		self.state['LB'] = 0
+		self.state['RB'] = 0
+		self.state['Back'] = 0
+		self.state['Start'] = 0
+		self.state['L_Axis_x'] = 0
+		self.state['L_Axis_y'] = 0
+		self.state['LT'] = 0
+		self.state['R_Axis_x'] = 0
+		self.state['R_Axis_y'] = 0
+		self.state['RT'] = 0
+		self.state['Cross_x'] = 0
+		self.state['Cross_y'] = 0
 
 		self.t = threading.Thread(target = self.loop)
 		self.t.start()
@@ -64,7 +81,7 @@ def main():
 	joycon = Joycon("/dev/input/js0")
 	while True:
 		print(joycon.get())
-		time.sleep(0.5)
+		time.sleep(0.1)
 
 if __name__ == '__main__':
 	main()
