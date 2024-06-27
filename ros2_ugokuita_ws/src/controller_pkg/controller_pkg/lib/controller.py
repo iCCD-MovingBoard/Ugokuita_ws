@@ -46,6 +46,8 @@ class Joycon:
 					self.state['R_Axis_x'] = value
 				elif(index == analog_button['R_Axis_y']):
 					self.state['R_Axis_y'] = value
+				elif(index == analog_button['RT']):
+					self.state['RT'] = value
 			elif(digital_analog == 1):
 				if(index == digital_button['A']):
 					self.state['A'] = value
