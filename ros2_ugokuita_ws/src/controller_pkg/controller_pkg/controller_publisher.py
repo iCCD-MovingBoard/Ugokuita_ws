@@ -19,11 +19,23 @@ class ControllerPublisher(Node):
 
   def timer_callback(self):
     controller_data: dict = self.joycon.state
+    forward  = controller_data['RT']
+    backward = controller_data['LT']
     axis_x = controller_data['L_Axis_x']
-    axis_y = controller_data['L_Axis_y']
-    right = str_converter.scale_speed(-axis_x - axis_y)
-    left  = str_converter.scale_speed( axis_x - axis_y)
+    
+    # -1 ~ 1
+    to_right = -axis_x/32767
+    
+    # -32767 ~ 32767
+    right = ( forward-backward ) * ( 1 + to_right ) * 0.5
+    left  = ( forward-backward ) * ( 1 - to_right ) * 0.5
+    
+    # uart通信の範囲 -40 ~ 40に変換
+    right = str_converter.toUART(right, 32767)
+    left  = str_converter.toUART(left, 32767)
+    
     right, left = str_converter.adjust_speed(right, left)
+    
     msg = String()
     msg.data = f"ID{CONTROLLER_ID},R{right},L{left},H{int(self.isLightOn)}"
     
