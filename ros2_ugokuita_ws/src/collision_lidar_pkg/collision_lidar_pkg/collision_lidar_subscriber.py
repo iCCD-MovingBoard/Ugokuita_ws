@@ -28,7 +28,7 @@ class ControllerSubscriber(Node):
             if value == 0.0: continue
             if value < collision_distance_threshold:
                 request = String()
-                request.data = f"ID{LIDAR_ID},R0,L0"
+                request.data = f"ID{LIDAR_ID},STOP,STOP"
                 self.publisher.publish(request)
                 return
         # self.publisher.publish(String(data='#start'))
