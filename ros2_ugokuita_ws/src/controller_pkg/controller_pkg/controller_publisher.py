@@ -29,7 +29,11 @@ class ControllerPublisher(Node):
     
     # # -32767 ~ 32767
     right = ( forward - backward ) * (0.5  + to_right)
-    left  = ( forward - backward ) * (0.5  + to_right)
+    left  = ( forward - backward ) * (0.5  - to_right)
+    if to_right > 0:
+      right = 0.5*(forward - backward)
+    if to_right < 0:
+      left = 0.5*(forward - backward)
     
     # uart通信の範囲 -400 ~ 400に変換
     right = str_converter.toUART(right, 32767)
