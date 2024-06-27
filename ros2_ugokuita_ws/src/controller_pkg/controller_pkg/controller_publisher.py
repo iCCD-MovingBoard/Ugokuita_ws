@@ -34,7 +34,7 @@ class ControllerPublisher(Node):
     right = - axis_x + axis_y
     left  =   axis_x + axis_y
     
-    # uart通信の範囲 -40 ~ 40に変換
+    # uart通信の範囲 -400 ~ 400に変換
     right = str_converter.toUART(right, 32767)
     left  = str_converter.toUART(left, 32767)
     

@@ -10,7 +10,7 @@ def to_dict(str):
         dict[key] = value
     return dict
 
-UART_MAX_VALUE = 40
+UART_MAX_VALUE = 400
 
 # -32768 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
 def toUART(speed, max):
