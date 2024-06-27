@@ -10,18 +10,17 @@ def to_dict(str):
         dict[key] = value
     return dict
 
-UART_MAX_VALUE = 4
+UART_MAX_VALUE = 250
 
 # -32768 ~ 32767の範囲の値を 0 ~ 256の範囲に変換する
-def scale_speed(speed):
+def toUART(speed, max):
     # 入力された値が一定以上小さい場合は入力を無効とする。
     # 今は閾値が1000になっているが割と適当に決めている。
-    threshold = 1000
+    threshold = 500
     if -threshold < speed < threshold: return 0
-    CONTROLLER_MAX_VALUE = 32767
-    CONV_RATE = UART_MAX_VALUE / CONTROLLER_MAX_VALUE
+    CONV_RATE = UART_MAX_VALUE / max
     scaled_speed = speed * CONV_RATE
-    return round(scaled_speed, 2)
+    return round(scaled_speed, 2)# 小数点第2位まで残す
 
 # 左右の速度が両方とも一定値以上の場合はどちらも最大値に変換して直進性を上げる関数
 def adjust_speed(speed_r, speed_l):

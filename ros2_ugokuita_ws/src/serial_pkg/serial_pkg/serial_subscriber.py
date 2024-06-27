@@ -14,6 +14,10 @@ class SerialSubscriber(Node):
   def listener_callback(self, msg):
     # self.get_logger().info('I heard: "%s"' % msg)
     commands = msg.data.split(',')
+    if 'R' in msg.data or 'L' in msg.data:
+      uart.send_command('V')
+    uart.send_command('T')
+    
     for command in commands:
       self.get_logger().info('Sending command: "%s"' % command)
       uart.send_command(command)

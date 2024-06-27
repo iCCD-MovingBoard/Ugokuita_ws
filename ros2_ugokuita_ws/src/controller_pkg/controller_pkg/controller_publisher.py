@@ -9,7 +9,7 @@ class ControllerPublisher(Node):
   def __init__(self):
     super().__init__('controller_publisher')
     self.publisher_ = self.create_publisher(String, 'request_topic', 10)
-    timer_period = 0.0001  # seconds
+    timer_period = 0.001  # seconds
     self.timer = self.create_timer(timer_period, self.timer_callback)
     self.i = 0
     self.joycon = Joycon("/dev/input/js0")
@@ -19,11 +19,26 @@ class ControllerPublisher(Node):
 
   def timer_callback(self):
     controller_data: dict = self.joycon.state
+    forward  = controller_data['RT'] - controller_data['LT']
     axis_x = controller_data['L_Axis_x']
-    axis_y = controller_data['L_Axis_y']
-    right = str_converter.scale_speed(-axis_x - axis_y)
-    left  = str_converter.scale_speed( axis_x - axis_y)
+    
+    # -1 ~ 1
+    to_right = -axis_x
+    
+    # # -32767 ~ 32767
+    right = forward*to_right/32767 + forward*0.5
+    left  = -forward*to_right/32767 + forward*0.5
+    if to_right > 0:
+      right = 0.5*forward
+    if to_right < 0:
+      left = 0.5*forward
+    
+    # uart通信の範囲 -400 ~ 400に変換
+    right = str_converter.toUART(right, 32767)
+    left  = str_converter.toUART(left, 32767)
+    
     right, left = str_converter.adjust_speed(right, left)
+    
     msg = String()
     msg.data = f"ID{CONTROLLER_ID},R{right},L{left},H{int(self.isLightOn)}"
     

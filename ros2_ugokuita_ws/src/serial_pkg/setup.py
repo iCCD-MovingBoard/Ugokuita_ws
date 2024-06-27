@@ -22,6 +22,7 @@ setup(
     entry_points={
         'console_scripts': [
             'serial_subscriber = serial_pkg.serial_subscriber:main',
+            'serial_publisher = serial_pkg.serial_publisher:main',
         ],
     },
 )

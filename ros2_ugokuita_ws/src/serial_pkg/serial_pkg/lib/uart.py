@@ -22,6 +22,10 @@ uart_port = serial.Serial(jetson_port,
 def send_command(send_data: str):
     uart_port.write(bytes(f'{send_data}\n', encoding='ascii'))
 
+def receive_data():
+    receive_data = uart_port.readline()
+    return receive_data
+
 def main():
     try:
         while True:
