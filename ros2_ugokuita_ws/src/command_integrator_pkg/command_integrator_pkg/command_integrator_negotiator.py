@@ -25,12 +25,20 @@ class CommandIntegrator(Node):
         for index, command in enumerate(commands):
             if index == 0: 
                 if command == LIDAR_ID:
-                    self.stop_count = 100
-                    send.data = '0,0'
-                    break
+                    self.stop_count = 200
                 continue
             if index != 1: send.data += ','
-            send.data += command
+            
+            integrated_command = command
+            if self.stop_count > 0:
+                if 'R' in command:
+                    integrated_command = 'R0'
+                    self.stop_count -= 1
+                elif 'L' in command:
+                    integrated_command = 'L0'
+                    self.stop_count -= 1
+
+            send.data += integrated_command
 
         self.publisher.publish(send)
 
