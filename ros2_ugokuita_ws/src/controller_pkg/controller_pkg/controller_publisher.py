@@ -22,13 +22,17 @@ class ControllerPublisher(Node):
     forward  = controller_data['RT']
     backward = controller_data['LT']
     axis_x = controller_data['L_Axis_x']
+    axis_y = controller_data['L_Axis_y']
     
     # -1 ~ 1
-    to_right = -axis_x/32767
+    to_right = -axis_x/32767.0
     
     # -32767 ~ 32767
     right = ( forward-backward ) * ( 1 + to_right ) * 0.5
     left  = ( forward-backward ) * ( 1 - to_right ) * 0.5
+    
+    right = - axis_x + axis_y
+    left  =   axis_x + axis_y
     
     # uart通信の範囲 -40 ~ 40に変換
     right = str_converter.toUART(right, 32767)
