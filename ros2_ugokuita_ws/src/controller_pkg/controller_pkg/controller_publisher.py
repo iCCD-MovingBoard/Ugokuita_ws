@@ -25,7 +25,7 @@ class ControllerPublisher(Node):
     axis_y = controller_data['L_Axis_y']
     
     # -1 ~ 1
-    to_right = -axis_x/32767.0
+    to_right = -axis_x
     
     # # -32767 ~ 32767
     right = ( forward - backward ) * 0.5 * 0.8 + to_right * 0.2

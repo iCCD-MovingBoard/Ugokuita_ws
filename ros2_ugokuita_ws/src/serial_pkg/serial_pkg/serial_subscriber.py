@@ -17,6 +17,7 @@ class SerialSubscriber(Node):
     for command in commands:
       self.get_logger().info('Sending command: "%s"' % command)
       uart.send_command(command)
+      uart.send_command('T')
 
 def main(args=None):
   try:
