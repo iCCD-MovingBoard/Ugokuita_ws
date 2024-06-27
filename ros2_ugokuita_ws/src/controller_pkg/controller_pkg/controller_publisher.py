@@ -19,21 +19,19 @@ class ControllerPublisher(Node):
 
   def timer_callback(self):
     controller_data: dict = self.joycon.state
-    forward  = controller_data['RT']
-    backward = controller_data['LT']
+    forward  = controller_data['RT'] - controller_data['LT']
     axis_x = controller_data['L_Axis_x']
-    axis_y = controller_data['L_Axis_y']
     
     # -1 ~ 1
-    to_right = -axis_x/32767
+    to_right = -axis_x
     
     # # -32767 ~ 32767
-    right = ( forward - backward ) * (0.5  + to_right)
-    left  = ( forward - backward ) * (0.5  - to_right)
+    right = forward*to_right/32767 + forward*0.5
+    left  = -forward*to_right/32767 + forward*0.5
     if to_right > 0:
-      right = 0.5*(forward - backward)
+      right = 0.5*forward
     if to_right < 0:
-      left = 0.5*(forward - backward)
+      left = 0.5*forward
     
     # uart通信の範囲 -400 ~ 400に変換
     right = str_converter.toUART(right, 32767)
