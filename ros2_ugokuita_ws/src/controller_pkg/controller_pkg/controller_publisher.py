@@ -28,11 +28,8 @@ class ControllerPublisher(Node):
     # to_right = -axis_x/32767.0
     
     # # -32767 ~ 32767
-    # right = ( forward-backward ) * ( 1 + to_right ) * 0.5
-    # left  = ( forward-backward ) * ( 1 - to_right ) * 0.5
-    
-    right = - axis_x + axis_y
-    left  =   axis_x + axis_y
+    right = ( forward - backward ) *0.5 # * ( 1 + to_right ) * 0.5
+    left  = ( forward - backward ) *0.5 # * ( 1 - to_right ) * 0.5
     
     # uart通信の範囲 -400 ~ 400に変換
     right = str_converter.toUART(right, 32767)
