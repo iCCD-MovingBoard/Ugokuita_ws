@@ -16,7 +16,7 @@ UART_MAX_VALUE = 400
 def toUART(speed, max):
     # 入力された値が一定以上小さい場合は入力を無効とする。
     # 今は閾値が1000になっているが割と適当に決めている。
-    threshold = 1000
+    threshold = 500
     if -threshold < speed < threshold: return 0
     CONV_RATE = UART_MAX_VALUE / max
     scaled_speed = speed * CONV_RATE

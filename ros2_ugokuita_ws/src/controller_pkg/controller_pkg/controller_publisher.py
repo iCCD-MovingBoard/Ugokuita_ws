@@ -9,7 +9,7 @@ class ControllerPublisher(Node):
   def __init__(self):
     super().__init__('controller_publisher')
     self.publisher_ = self.create_publisher(String, 'request_topic', 10)
-    timer_period = 0.0001  # seconds
+    timer_period = 0.001  # seconds
     self.timer = self.create_timer(timer_period, self.timer_callback)
     self.i = 0
     self.joycon = Joycon("/dev/input/js0")
