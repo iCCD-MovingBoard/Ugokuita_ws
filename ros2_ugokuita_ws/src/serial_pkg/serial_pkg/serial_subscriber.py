@@ -18,6 +18,8 @@ class SerialSubscriber(Node):
       self.get_logger().info('Sending command: "%s"' % command)
       uart.send_command(command)
       uart.send_command('T')
+      if 'R' in command:
+        uart.send_command('V')
 
 def main(args=None):
   try:
